@@ -1,0 +1,39 @@
+@font-face {
+    font-family: 'Niramit';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Niramit Light'), local('ONiramit-Light'),
+    url('Niramit-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Niramit';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Niramit Regular'), local('Niramit-Regular'),
+    url('Niramit-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Niramit';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Niramit Italic'), local('Niramit-Italic'),
+    url('Niramit-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Niramit';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Niramit SemiBold'), local('Niramit-Semibold'),
+    url('Niramit-Semibold.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Niramit';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Niramit Bold'), local('Niramit-Bold'),
+    url('Niramit-Bold.ttf') format('truetype');
+}
