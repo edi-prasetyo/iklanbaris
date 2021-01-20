@@ -62,7 +62,7 @@ class Iklan extends CI_Controller
 
     $iklan = $this->iklan_model->get_alliklan($limit, $start);
     $data = [
-      'title'         => 'Iklan Saya',
+      'title'         => 'Data Iklan',
       'iklan'         => $iklan,
       'pagination'    => $this->pagination->create_links(),
       'content'       => 'admin/iklan/index_iklan'

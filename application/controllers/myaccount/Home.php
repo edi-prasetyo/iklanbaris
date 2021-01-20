@@ -7,26 +7,26 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('user_model');
-        $this->load->model('property_model');
+        $this->load->model('iklan_model');
     }
 
     public function index()
     {
-        $id = $this->session->userdata('id');
-        $user = $this->user_model->user_detail($id);
+        $id     = $this->session->userdata('id');
+        $user   = $this->user_model->user_detail($id);
 
-        $total_property = $this->property_model->total_property_user($id);
-        $property_active = $this->property_model->total_active_user($id);
-        $property_inactive = $this->property_model->total_inactive_user($id);
+        $iklan_saya     = $this->iklan_model->total_iklan_user($id);
+        $iklan_active   = $this->iklan_model->total_iklan_user_active($id);
+        $iklan_pending  = $this->iklan_model->total_iklan_user_pending($id);
 
         $data = [
             'title'             => 'Home',
             'deskripsi'         => 'Deskripsi',
             'keywords'          => 'Keywords',
             'user'              => $user,
-            'total_property'   => $total_property,
-            'property_active'   => $property_active,
-            'property_inactive'   => $property_inactive,
+            'iklan_saya'        => $iklan_saya,
+            'iklan_active'      => $iklan_active,
+            'iklan_pending'     => $iklan_pending,
             'content'           => 'myaccount/home/index'
         ];
 

@@ -125,6 +125,33 @@ class iklan_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    // Iklan Aktif
+    public function total_iklan_user_active($id)
+    {
+        $this->db->select('*');
+        $this->db->from('iklan');
+        $this->db->where(['user_id' => $id, 'iklan_status' => 'active']);
+        // $this->db->where('start_date <= ' , date('Y-m-d'));
+        // $this->db->where('expired_date >= ' , date('Y-m-d'));
+        $this->db->order_by('id', 'DESC');
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+    // Iklan Pending
+    public function total_iklan_user_pending($id)
+    {
+        $this->db->select('*');
+        $this->db->from('iklan');
+        $this->db->where(['user_id' => $id, 'iklan_status' => 'Pending']);
+        // $this->db->where('start_date <= ' , date('Y-m-d'));
+        // $this->db->where('expired_date >= ' , date('Y-m-d'));
+        $this->db->order_by('id', 'DESC');
+
+        $query = $this->db->get();
+        return $query->result();
+    }
+
     public function total_active_user($id)
     {
         $this->db->select('*');

@@ -17,6 +17,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>No</th>
+                    <th>ID</th>
                     <th>Judul</th>
                     <th>Member</th>
                     <th>Status</th>
@@ -28,6 +29,7 @@
             foreach ($iklan as $iklan) { ?>
                 <tr>
                     <td><?php echo $no; ?></td>
+                    <td><?php echo $iklan->id_iklan; ?></td>
                     <td><?php echo $iklan->iklan_title; ?></td>
                     <td><?php echo $iklan->user_name; ?></td>
                     <td><?php if ($iklan->iklan_status == "Active") : ?>

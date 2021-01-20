@@ -1,14 +1,17 @@
-<!--  Breadcrumbs  -->
-<div class="breadcrumbs mt-3">
-    <div class="container">
-        <ol>
-            <li><a href="<?php echo base_url('') ?>"><i class="ti ti-home"></i> Home</a></li>
-            <li><?php echo $title ?></li>
-        </ol>
+<div class="container">
+    <section class="breadcrumbs my-2">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <ol>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('') ?>"><i class="ti-home"></i> Home</a></li>
+                <li class="breadcrumb-item active"><a href="<?php echo base_url('/' . $this->uri->segment(1)) ?>">
+                        <?php echo ucfirst(str_replace('_', ' ', $this->uri->segment(1))) ?>
+                    </a></li>
+                <li class="breadcrumb-item active"><?php echo $title ?></li>
+            </ol>
+        </div>
+    </section>
+</div>
 
-
-    </div>
-</div><!-- End Breadcrumbs -->
 <div class="container">
 
     <?php if ($iklan->iklan_status == "Active") : ?>
@@ -54,7 +57,11 @@
 
                                 <!-- <button id="change-phrase" type="button">Change Phrase</button> -->
                                 <button id="change-phrase" class="btn btn-warning px-3"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
-                                <span class="btn btn-success px-3"> <i class="ri-whatsapp-line"></i> </span>
+                                <?php if ($iklan->user_whatsapp == true) : ?>
+                                    <span class="btn btn-success px-3"> <i class="ri-whatsapp-line"></i> Chat Whatsapp </span>
+                                <?php else : ?>
+                                <?php endif; ?>
+
                                 <br>
                                 <a href="" data-toggle="modal" data-target="#exampleModal"> <i class="ri-error-warning-line"></i> Laporkan Iklan</a>
 
@@ -72,9 +79,10 @@
 
             <div class="col-md-8">
                 <div class="card my-2">
+                    <div class="card-header">
+                        Deskripsi Iklan
+                    </div>
                     <div class="card-body">
-
-                        <h3>Deskripsi</h3>
                         <?php echo $iklan->iklan_desc; ?>
                     </div>
                 </div>

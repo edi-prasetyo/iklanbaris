@@ -94,7 +94,7 @@ class Package extends CI_Controller
     //Validasi
     $this->form_validation->set_rules(
       'package_name',
-      'Nama Kategori',
+      'Nama Paket',
       'required',
       array('required'         => '%s Harus Diisi')
     );
@@ -112,7 +112,9 @@ class Package extends CI_Controller
 
       $data  = [
         'id'                => $id,
-        'package_name'     => $this->input->post('package_name'),
+        'package_name'      => $this->input->post('package_name'),
+        'package_price'     => $this->input->post('package_price'),
+        'package_post'     => $this->input->post('package_post'),
         'date_updated'      => time()
       ];
       $this->package_model->update($data);
@@ -132,102 +134,5 @@ class Package extends CI_Controller
     $this->package_model->delete($data);
     $this->session->set_flashdata('message', 'Data telah di Hapus');
     redirect(base_url('admin/package'), 'refresh');
-  }
-
-  // Data Kota
-  public function city($id)
-  {
-    $package       = $this->package_model->detail_package($id);
-    $city      = $this->city_model->city_by_package($id);
-
-    //Validasi
-    $valid = $this->form_validation;
-
-    $valid->set_rules(
-      'city_name',
-      'Nama Kota',
-      'required',
-      array('required'      => '%s harus dicontent')
-    );
-
-    if ($valid->run() === FALSE) {
-      //End Validasi
-      $data = array(
-        'title'           => 'Tambah Kota',
-        'package'        => $package,
-        'city'            => $city,
-        'content'         => 'admin/city/index_city'
-      );
-      $this->load->view('admin/layout/wrapp', $data, FALSE);
-
-      //Masuk Database
-
-    } else {
-      $slugcodecity = random_string('numeric', 5);
-      $city_slug  = url_title($this->input->post('city_name'), 'dash', TRUE);
-      $data  = array(
-        'package_id'         => $id,
-        'city_slug'           =>  $city_slug . '-' . $slugcodecity,
-        'city_name'           => $this->input->post('city_name'),
-        'date_created'        => time()
-      );
-      $this->city_model->create($data);
-      $this->session->set_flashdata('message', 'Data telah ditambahkan');
-      redirect(base_url('admin/package/city/' . $id), 'refresh');
-    }
-
-    //End Masuk Database
-    $data = array(
-      'title'         => 'Tambah mobil',
-      'package'         => $package,
-      'city'              => $city,
-      'content'           => 'admin/package/city'
-    );
-    $this->load->view('admin/layout/wrapp', $data, FALSE);
-  }
-
-  public function update_city($package_id, $id)
-  {
-    $city = $this->city_model->detail_city($id);
-    //Validasi
-    $this->form_validation->set_rules(
-      'city_name',
-      'Nama Kota',
-      'required',
-      array('required'         => '%s Harus Diisi')
-    );
-    if ($this->form_validation->run() === FALSE) {
-      //End Validasi
-
-      $data = [
-        'title'             => 'Edit kategori Berita',
-        '$city'          => $city,
-        'content'           => 'admin/package/update_city'
-      ];
-      $this->load->view('admin/layout/wrapp', $data, FALSE);
-      //Masuk Database
-    } else {
-
-      $data  = [
-        'id'                => $id,
-        'city_name'     => $this->input->post('city_name'),
-        'date_updated'      => time()
-      ];
-      $this->city_model->update($data);
-      $this->session->set_flashdata('message', 'Data telah di Update');
-      redirect($_SERVER['HTTP_REFERER']);
-    }
-    //End Masuk Database
-  }
-
-  public function delete_city($id)
-  {
-    is_login();
-
-    $city = $this->city_model->detail_city($id);
-    $data = ['id'   => $city->id];
-    $this->city_model->delete($data);
-    $this->session->set_flashdata('message', 'Data Kota ' . $city->city_name . ' telah di Hapus');
-    redirect($_SERVER['HTTP_REFERER']);
   }
 }

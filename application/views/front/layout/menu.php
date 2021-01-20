@@ -31,6 +31,8 @@ $meta           = $this->meta_model->get_meta();
               <a class="dropdown-item" href="<?php echo base_url('myaccount') ?>"><i class="ti-panel"></i> Panel</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/profile') ?>"><i class="ti-user"></i> Akun Saya</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/iklan') ?>"><i class="ri-shopping-bag-line"></i> Iklan Saya</a>
+              <a class="dropdown-item" href="<?php echo base_url('myaccount/package') ?>"><i class="ri-vip-crown-line"></i> Paket Premium</a>
+              <a class="dropdown-item" href="<?php echo base_url('myaccount/transaction') ?>"><i class="ri-file-list-3-line"></i> Riwayat Transaksi</a>
 
               <div class="dropdown-divider"></div>
               <?php if ($user->role_id == 1) : ?>

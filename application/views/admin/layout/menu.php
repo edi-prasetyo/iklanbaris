@@ -15,13 +15,37 @@ $meta           = $this->meta_model->get_meta();
     <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav">
         <li class="nav-item active"> <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">Dashboard </a> </li>
-        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/province'); ?>"> Provinsi </a></li>
+        <li class="nav-item active"> <a class="nav-link" href="<?php echo base_url('admin/iklan'); ?>">Iklan </a> </li>
+        <li class="nav-item active"> <a class="nav-link" href="<?php echo base_url('admin/transaction'); ?>">Transaksi </a> </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Data Master
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<?php echo base_url('admin/category'); ?>"> Kategori</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/province'); ?>"> Provinsi</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/report'); ?>"> Report</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="<?php echo base_url('admin/berita'); ?>"> Blog</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/page'); ?>"> Halaman</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/faq'); ?>"> FAQ</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/rules'); ?>"> Peraturan</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Data Akun
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<?php echo base_url('admin/user'); ?>"> Admin</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/user'); ?>"> Member</a>
+          </div>
+        </li>
 
-        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/iklan'); ?>"> Iklan </a></li>
-        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/category'); ?>"> Kategori </a></li>
-        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/berita'); ?>"> Blog </a></li>
-        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/user'); ?>"> Member </a></li>
-        <li class="nav-item"><a class="nav-link" href="<?php echo base_url('admin/report'); ?>"> Report </a></li>
+
+
+
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Pengaturan
@@ -53,4 +77,17 @@ $meta           = $this->meta_model->get_meta();
   </div>
 </nav>
 
-<div class="container my-5 mt-5 py-5">
+<div class="container my-3">
+
+  <section class="breadcrumbs">
+    <div class="d-sm-flex align-items-center justify-content-between">
+      <h5 class="mb-0 text-gray-800"><?php echo $title; ?></h5>
+      <ol>
+        <li class="breadcrumb-item"><a href="<?php echo base_url('admin/dashboard') ?>"> Dashboard</a></li>
+        <li class="breadcrumb-item active"><a href="<?php echo base_url('admin/' . $this->uri->segment(2)) ?>">
+            <?php echo ucfirst(str_replace('_', ' ', $this->uri->segment(2))) ?>
+          </a></li>
+        <li class="breadcrumb-item active"><?php echo $title ?></li>
+      </ol>
+    </div>
+  </section>

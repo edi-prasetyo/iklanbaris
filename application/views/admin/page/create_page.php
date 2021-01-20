@@ -1,58 +1,43 @@
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Tambah">
-    <i class="fa fa-plus"></i> Tambah Baru
-</button>
+<div class="card">
+    <div class="card-header">
+        <?php echo $title; ?>
+    </div>
+    <div class="card-body">
+        <?php
+        //Form Open
+        echo form_open(base_url('admin/page/create/'));
+        ?>
 
-<div class="modal modal-default fade" id="Tambah">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Tambah Kategori</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label">Judul Halaman</label>
 
-            </div>
-            <div class="modal-body">
-                <?php
-                //Form Open
-                echo form_open(base_url('admin/category'));
-                ?>
-
-                <div class="form-group">
-                    <label>Nama Kategori</label>
-                    <input type="text" class="form-control" name="category_name" placeholder="Nama Kategori">
-                    <?php echo form_error('category_name', '<small class="text-danger">', '</small>'); ?>
-                </div>
-
-                <div class="form-group">
-                    <label>Status Berita <span class="text-danger">*</span>
-                    </label>
-
-                    <select name="category_type" class="form-control form-control-chosen">
-                        <option value="Blog">Blog</option>
-                        <option value="Iklan">Iklan</option>
-                    </select>
-
-                </div>
-
-                <div class="form-group">
-                    <input type="submit" class="btn btn-primary" name="submit" value="Simpan Data">
-                </div>
-
-
-                <?php
-                //Form Close
-                echo form_close();
-                ?>
-
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary pull-right" data-dismiss="modal"><i class="fa fa-close"></i> Tutup</button>
-
+            <div class="col-lg-9">
+                <input type="text" class="form-control" name="page_title" placeholder="Judul halaman">
+                <?php echo form_error('page_title', '<small class="text-danger">', '</small>'); ?>
             </div>
         </div>
-        <!-- /.modal-content -->
+
+        <div class="form-group row">
+            <label class="col-lg-3 col-form-label">Deskripsi Halaman <span class="text-danger">*</span>
+            </label>
+            <div class="col-lg-9">
+                <textarea class="form-control" id="summernote" name="page_desc" placeholder="Deskripsi Halaman"></textarea>
+                <?php echo form_error('page_desc', '<small class="text-danger">', '</small>'); ?>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-lg-3"></label>
+            <div class="col-lg-9">
+                <input type="submit" class="btn btn-primary" name="submit" value="Simpan Data">
+            </div>
+        </div>
+
+
+        <?php
+        //Form Close
+        echo form_close();
+        ?>
+
     </div>
-    <!-- /.modal-dialog -->
 </div>
-<!-- /.modal -->

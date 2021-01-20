@@ -31,11 +31,11 @@ class Page_model extends CI_Model
         $this->db->select('*');
         $this->db->from('page');
         $this->db->where(array(
-          'id'            => $page_id
+            'id'            => $page_id
         ));
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
-          return $query->row();
+        return $query->row();
     }
 
     public function get_page_sidebar()
@@ -86,5 +86,15 @@ class Page_model extends CI_Model
     {
         $this->db->where('id', $data['id']);
         $this->db->delete('page', $data);
+    }
+
+    //Total Berita Main Page
+    public function total_row()
+    {
+        $this->db->select('*');
+        $this->db->from('page');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
     }
 }

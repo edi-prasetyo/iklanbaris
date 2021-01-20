@@ -26,7 +26,7 @@
 
 
             <?php
-            echo form_open_multipart('myaccount/create');
+            echo form_open_multipart('myaccount/iklan/create');
             ?>
 
             <div class="form-group row">

@@ -27,70 +27,49 @@
 		<div class="col-md-8">
 			<div class="card">
 
-				<?php
-				//Notifikasi
-				if ($this->session->flashdata('message')) {
-					echo $this->session->flashdata('message');
-				}
-				?>
+
 				<div class="card-header">
 					Info Profile
 				</div>
 
 				<div class="card-body">
-					<div class="row mt-3">
-						<div class="col-md-6">
-							<div class="form-group form-group-default">
-								<label>Nama Lengkap</label>
-								<?php echo $user->user_name; ?>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<div class="form-group form-group-default">
-								<label>Email</label>
-								<?php echo $user->email; ?>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-4">
-							<div class="form-group form-group-default">
-								<label>Agent Property</label>
-								<?php echo $user->company_name; ?>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group form-group-default">
-								<label>Nomor HP</label>
-								<?php echo $user->user_phone; ?>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="form-group form-group-default">
-								<label>Whatsapp</label>
-								<?php echo $user->user_whatsapp; ?>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-3">
-						<div class="col-md-12">
-							<div class="form-group form-group-default">
-								<label>Alamat</label>
-								<?php echo $user->user_address; ?>
-							</div>
-						</div>
-					</div>
-					<div class="row mt-3 mb-1">
-						<div class="col-md-12">
-							<div class="form-group form-group-default">
-								<label>Biografi</label>
-								<?php echo $user->user_bio; ?>
-							</div>
-						</div>
-					</div>
-					<div class="text-right mt-3 mb-3">
 
-					</div>
+					<?php
+					//Notifikasi
+					if ($this->session->flashdata('message')) {
+						echo $this->session->flashdata('message');
+					}
+					?>
+
+					<ul class="list-group list-group-flush">
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="font-weight-bold">Nama Lengkap</span>
+							<?php echo $user->user_name; ?>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="font-weight-bold">Username</span>
+							<?php echo $user->username; ?>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="font-weight-bold">Email</span>
+							<?php echo $user->email; ?>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="font-weight-bold">Nomor Handphone</span>
+							<?php echo $user->user_phone; ?>
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="font-weight-bold">Alamat</span>
+							<?php echo $user->user_address; ?>
+						</li>
+					</ul>
+					<hr>
+
+
+					<div class="font-weight-bold">Biografi</div>
+
+					<?php echo $user->user_bio; ?>
+
 
 				</div>
 			</div>

@@ -27,7 +27,7 @@
                 <thead class="thead-light">
                     <tr>
                         <th>No</th>
-                        <th>Logo</th>
+                        <th width="10%">Logo</th>
                         <th>Nama Bank</th>
                         <th>No. Rekening</th>
                         <th>Atas Nama</th>
@@ -39,14 +39,14 @@
                 foreach ($bank as $bank) { ?>
                     <tr>
                         <td><?php echo $no; ?></td>
-                        <td><img class="img-fluid" src="<?php echo base_url('assets/img/galery/' .$bank->bank_logo) ; ?>"></td>
+                        <td><img class="img-fluid" src="<?php echo base_url('assets/img/bank/' . $bank->bank_logo); ?>"></td>
                         <td><?php echo $bank->bank_name; ?></td>
                         <td><?php echo $bank->bank_number; ?></td>
                         <td><?php echo $bank->bank_account; ?></td>
                         <td><?php echo $bank->bank_branch; ?></td>
                         <td>
-                            <a href="<?php echo base_url('admin/bank/create'); ?>" class="btn btn-success"><i class="ti-eye"></i> Lihat</a>
-                            <a href="<?php echo base_url('admin/bank/update/' . $bank->id); ?>" class="btn btn-info"><i class="ti-pencil-alt"></i> Edit</a>
+                            <a href="<?php echo base_url('admin/bank/create'); ?>" class="btn btn-success btn-sm text-white"><i class="ti-eye"></i> Lihat</a>
+                            <a href="<?php echo base_url('admin/bank/update/' . $bank->id); ?>" class="btn btn-info btn-sm text-white"><i class="ti-pencil-alt"></i> Edit</a>
                             <?php include "delete_bank.php"; ?>
                         </td>
                     </tr>

@@ -1,7 +1,7 @@
-<div class="card shadow">
+<div class="card">
     <div class="card-header">
-        <h3><?php echo $title; ?></h3>
-        <hr>
+        <?php echo $title; ?>
+
     </div>
 
     <div class="card-body">

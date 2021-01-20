@@ -1,47 +1,58 @@
-<!--  Breadcrumbs  -->
-<div class="breadcrumbs mt-3">
-    <div class="container">
-        <ol>
-            <li><a href="<?php echo base_url('') ?>"><i class="ti ti-home"></i> Home</a></li>
-            <li><?php echo $title ?></li>
-        </ol>
+<div class="container">
+    <section class="breadcrumbs mt-3">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <ol>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('') ?>"><i class="ti-home"></i> Home</a></li>
+                <li class="breadcrumb-item active"><?php echo $title ?></li>
+            </ol>
+        </div>
+    </section>
+</div>
 
 
-    </div>
-</div><!-- End Breadcrumbs -->
 <div class="container">
     <div class="row">
 
 
         <?php if (!empty($iklan)) : ?>
 
+
+
             <div class="col-md-9">
 
 
-                <div class="card my-2">
-                    <div class="card-header">Info Penjual</div>
+
+                <div class="card mb-4">
                     <div class="card-body">
+
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="img-avatar">
-                                    <img class="img-fluid" src="<?php echo base_url('assets/img/avatars/' . $user_list->user_image); ?>">
+                            <div class="col-lg-8">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="img-avatar">
+                                            <img class="img-fluid" src="<?php echo base_url('assets/img/avatars/' . $user_list->user_image); ?>">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+
+                                        <h2><i class="fas fa-store"></i> <?php echo $user_list->user_name; ?></h2>
+
+                                        <i class="far fa-map"></i><?php echo $user_list->user_address; ?><br>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-md-9">
-                                <h3><a href="<?php echo base_url('iklan/user/' . $user_list->username); ?>"> <?php echo $user_list->user_name; ?></a></h3>
-                                <p class="my-3"><i class="ri-map-pin-fill"></i> <?php echo $user_list->user_address; ?></p>
 
+                            </div>
+
+                            <div class="col-lg-4">
                                 <!-- <button id="change-phrase" type="button">Change Phrase</button> -->
-                                <button id="change-phrase" class="btn btn-warning px-3"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
-                                <span class="btn btn-success px-3"> <i class="ri-whatsapp-line"></i> </span>
-                                <br>
-
+                                <button id="change-phrase" class="btn btn-warning mb-3 btn-block"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
+                                <span class="btn btn-success btn-block"> <i class="ri-whatsapp-line"></i> Chat Whatsapp</span>
                             </div>
-
-
                         </div>
                     </div>
+
                 </div>
+
 
                 <?php foreach ($iklan as $iklan) : ?>
 
@@ -123,6 +134,6 @@
         content = document.getElementById('change-phrase');
 
     button.onclick = function() {
-        content.innerHTML = '<?php echo $user_list->user_phone; ?>';
+        content.innerHTML = '<i class="ri-phone-line"></i> <?php echo $user_list->user_phone; ?>';
     };
 </script>

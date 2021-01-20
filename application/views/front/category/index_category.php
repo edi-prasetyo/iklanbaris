@@ -1,19 +1,18 @@
-<!-- ======= Breadcrumbs Section ======= -->
-<div class="breadcrumbs">
-    <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>Blog</h2>
+<div class="container">
+    <section class="breadcrumbs mt-3">
+        <div class="d-sm-flex align-items-center justify-content-between">
             <ol>
-                <li><a href="<?php echo base_url(); ?>">Home</a></li>
-                <li><?php echo $title ?></li>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('') ?>"><i class="ti-home"></i> Home</a></li>
+                <li class="breadcrumb-item active"><a href="<?php echo base_url('/' . $this->uri->segment(1)) ?>">
+                        <?php echo ucfirst(str_replace('_', ' ', $this->uri->segment(1))) ?>
+                    </a></li>
+                <li class="breadcrumb-item active"><?php echo $title ?></li>
             </ol>
         </div>
+    </section>
+</div>
 
-    </div>
-</div><!-- End Breadcrumbs Section -->
-
-<div class="container my-3">
+<div class="container">
     <div class="row">
 
         <?php foreach ($category as $category) { ?>

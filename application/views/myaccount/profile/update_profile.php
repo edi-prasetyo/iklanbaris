@@ -62,23 +62,8 @@
                         </div>
 
 
-                        <div class="col-3">
-                            Agent Property
-                        </div>
-                        <div class="col-9">
-                            <div class="form-group">
-                                <select name="company_id" class="form-control custom-select">
-                                    <option>
-                                    <option>
-                                        <?php foreach ($company as $company) : ?>
-                                    <option value="<?php echo $company->id; ?>" <?php if ($user->company_id == $company->id) {
-                                                                                    echo 'selected';
-                                                                                } ?>><?php echo $company->company_name; ?></option>
-                                <?php endforeach; ?>
 
-                                </select>
-                            </div>
-                        </div>
+
 
 
 
@@ -87,23 +72,27 @@
                         <div class="col-3">
                             Handphone
                         </div>
-                        <div class="col-9">
+                        <div class="col-4">
                             <div class="form-group">
                                 <input type="text" class="form-control" name="user_phone" placeholder="No. Handphone" value="<?php echo $user->user_phone; ?>">
                                 <?php echo form_error('user_phone', '<small class="text-danger pl-3">', '</small>'); ?>
                             </div>
 
                         </div>
-                        <div class="col-3">
-                            Whatsapp
-                        </div>
-                        <div class="col-9">
-                            <div class="form-group">
-                                <input type="text" class="form-control" name="user_whatsapp" placeholder="No. Whatsapp" value="<?php echo $user->user_whatsapp; ?>">
-                                <?php echo form_error('user_whatsapp', '<small class="text-danger pl-3">', '</small>'); ?>
-                            </div>
 
+                        <div class="col-5">
+                            <label class="form-check-label my-auto">
+                                <input type="radio" class="form-check-input" name="user_whatsapp" value="1" <?php if ($user->user_whatsapp == "1") {
+                                                                                                                echo "checked";
+                                                                                                            } ?>>Aktifkan Whatsapp
+                            </label>
+                            <label class="form-check-label my-auto">
+                                <input type="radio" class="form-check-input" name="user_whatsapp" value="0" <?php if ($user->user_whatsapp == "0") {
+                                                                                                                echo "checked";
+                                                                                                            } ?>>Nonaktifkan Whatsapp
+                            </label>
                         </div>
+
                         <div class="col-3">
                             Alamat
                         </div>

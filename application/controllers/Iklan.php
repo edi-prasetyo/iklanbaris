@@ -99,9 +99,10 @@ class Iklan extends CI_Controller
       redirect(base_url('iklan'));
     }
 
-    $category_list                   = $this->category_model->read($slug_kategori);
-    $category_id                = $category_list->id;
-    $category = $this->category_model->get_category_iklan();
+    $category_list                    = $this->category_model->read($slug_kategori);
+    $category_id                      = $category_list->id;
+    $category                         = $this->category_model->get_category_iklan();
+    $iklan_premium                    = $this->iklan_model->iklan_premium();
 
     // $meta                       = $this->meta_model->listing();
     // Listing Berita Dengan Pagination
@@ -143,12 +144,13 @@ class Iklan extends CI_Controller
     $iklan                   = $this->iklan_model->iklan_category($category_id, $limit, $start);
     // End Listing Berita
     $data = array(
-      'title'       => 'Kategori - ' . $category_list->category_name,
-      'deskripsi'   => 'Kategori - ' . $category_list->category_name,
-      'keywords'    => 'Kategori - ' . $category_list->category_name,
-      'pagination'    => $this->pagination->create_links(),
-      'iklan'      => $iklan,
-      'category'  => $category,
+      'title'           => 'Kategori - ' . $category_list->category_name,
+      'deskripsi'       => 'Kategori - ' . $category_list->category_name,
+      'keywords'        => 'Kategori - ' . $category_list->category_name,
+      'pagination'      => $this->pagination->create_links(),
+      'iklan'           => $iklan,
+      'category'        => $category,
+      'iklan_premium'   => $iklan_premium,
       'content'         => 'front/iklan/index_iklan'
     );
     $this->load->view('front/layout/wrapp', $data, FALSE);

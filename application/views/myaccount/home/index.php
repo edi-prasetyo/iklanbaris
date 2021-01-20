@@ -32,20 +32,40 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-5">
-									<div class="display-4 text-center text-success">
+									<div class="display-4 text-center text-primary">
 										<i class="ri-store-2-line"></i>
 									</div>
 								</div>
 								<div class="col col-stats">
 									<div class="numbers">
-										<p class="card-category">Iklan Aktif</p>
-										<h4 class="card-title">13</h4>
+										<p class="card-category">Total Iklan</p>
+										<h4 class="card-title"><?php echo count($iklan_saya); ?></h4>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<div class="col-sm-6 col-md-6 mb-2">
+					<div class="card card-stats card-info card-round">
+						<div class="card-body">
+							<div class="row">
+								<div class="col-5">
+									<div class="display-4 text-center text-success">
+										<i class="ri-check-line"></i>
+									</div>
+								</div>
+								<div class="col col-stats">
+									<div class="numbers">
+										<p class="card-category">Iklan Aktif</p>
+										<h4 class="card-title"><?php echo count($iklan_active); ?></h4>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
 				<div class="col-sm-6 col-md-6 mb-2">
 					<div class="card card-stats card-info card-round">
 						<div class="card-body">
@@ -58,7 +78,7 @@
 								<div class="col col-stats">
 									<div class="numbers">
 										<p class="card-category">Iklan Pending</p>
-										<h4 class="card-title">1</h4>
+										<h4 class="card-title"><?php echo count($iklan_pending); ?></h4>
 									</div>
 								</div>
 							</div>
@@ -78,27 +98,7 @@
 								<div class="col col-stats">
 									<div class="numbers">
 										<p class="card-category">Paket Premium</p>
-										<h4 class="card-title">0</h4>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-6 col-md-6 mb-2">
-					<div class="card card-stats card-info card-round">
-						<div class="card-body">
-							<div class="row">
-								<div class="col-5">
-									<div class="display-4 text-center text-danger">
-										<i class="ri-mail-line"></i>
-									</div>
-								</div>
-								<div class="col col-stats">
-									<div class="numbers">
-										<p class="card-category">Pesan</p>
-										<h4 class="card-title">1303</h4>
+										<h4 class="card-title"><?php echo $user->premium_count; ?></h4>
 									</div>
 								</div>
 							</div>

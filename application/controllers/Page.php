@@ -16,13 +16,15 @@ class Page extends CI_Controller
     public function index()
     {
         $meta           = $this->meta_model->get_meta();
+        $page           = $this->page_model->get_page();
 
         // End Listing Berita dengan paginasi
         $data = array(
-            'title'       => 'About Us',
+            'title'       => 'Halaman',
             'deskripsi'   => 'Berita - ' . $meta->description,
             'keywords'    => 'Berita - ' . $meta->keywords,
-            'content'     => 'front/page/index_about'
+            'page'        => $page,
+            'content'     => 'front/page/index_page'
         );
         $this->load->view('front/layout/wrapp', $data, FALSE);
     }

@@ -12,11 +12,10 @@
                     <span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <p>Apakah Anda Yakin Ingin Menghapus Data Kategori <b><?php echo $page->page_name ?></b>?</p>
+                <p>Apakah Anda Yakin Ingin Menghapus Data Kategori <b><?php echo $page->page_title ?></b>?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Tutup</button>
-                <a href="<?php echo base_url('admin/page/delete/' . $page->id) ?>" class="btn btn-danger pull-right"><i class="fa fa-trash-o"></i> Ya, Hapus data ini</a>
+                <a href="<?php echo base_url('admin/page/delete/' . $page->id) ?>" class="btn btn-danger text-white pull-right"><i class="fa fa-trash-o"></i> Ya, Hapus data ini</a>
             </div>
         </div>
         <!-- /.modal-content -->

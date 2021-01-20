@@ -92,7 +92,7 @@ class Bank extends CI_Controller
         );
         if ($this->form_validation->run()) {
 
-            $config['upload_path']          = './assets/img/galery/';
+            $config['upload_path']          = './assets/img/bank/';
             $config['allowed_types']        = 'gif|jpg|png|jpeg|svg';
             $config['max_size']             = 5000; //Dalam Kilobyte
             $config['max_width']            = 5000; //Lebar (pixel)
@@ -118,7 +118,7 @@ class Bank extends CI_Controller
                 //lalu gambara Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
 
                 $config['image_library']    = 'gd2';
-                $config['source_image']     = './assets/img/galery/' . $upload_data['uploads']['file_name'];
+                $config['source_image']     = './assets/img/bank/' . $upload_data['uploads']['file_name'];
                 //Gambar Versi Kecil dipindahkan
                 // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                 $config['create_thumb']     = TRUE;
@@ -173,7 +173,7 @@ class Bank extends CI_Controller
             //Kalau nggak Ganti gambar
             if (!empty($_FILES['bank_logo']['name'])) {
 
-                $config['upload_path']          = './assets/img/galery/';
+                $config['upload_path']          = './assets/img/bank/';
                 $config['allowed_types']        = 'gif|jpg|png|jpeg|svg';
                 $config['max_size']             = 5000; //Dalam Kilobyte
                 $config['max_width']            = 5000; //Lebar (pixel)
@@ -200,7 +200,7 @@ class Bank extends CI_Controller
                     //lalu gambar Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
 
                     $config['image_library']    = 'gd2';
-                    $config['source_image']     = './assets/img/galery/' . $upload_data['uploads']['file_name'];
+                    $config['source_image']     = './assets/img/bank/' . $upload_data['uploads']['file_name'];
                     //Gambar Versi Kecil dipindahkan
                     // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                     $config['create_thumb']     = TRUE;
@@ -215,7 +215,7 @@ class Bank extends CI_Controller
 
                     // Hapus Gambar Lama Jika Ada upload gambar baru
                     if ($bank->bank_logo != "") {
-                        unlink('./assets/img/galery/' . $bank->bank_logo);
+                        unlink('./assets/img/bank/' . $bank->bank_logo);
                         // unlink('./assets/img/artikel/thumbs/' . $bank->bank_logo);
                     }
                     //End Hapus Gambar
@@ -272,7 +272,7 @@ class Bank extends CI_Controller
         //Hapus gambar
 
         if ($bank->bank_logo != "") {
-            unlink('./assets/img/artikel/' . $bank->bank_logo);
+            unlink('./assets/img/bank/' . $bank->bank_logo);
             // unlink('./assets/img/artikel/thumbs/' . $bank->bank_logo);
         }
         //End Hapus Gambar

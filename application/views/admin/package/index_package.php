@@ -1,17 +1,5 @@
 <!-- Invoice Example -->
-<?php
-//Notifikasi
-if ($this->session->flashdata('message')) {
-    echo '<div class="alert alert-success">';
-    echo '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>';
-    echo $this->session->flashdata('message');
-    echo '</div>';
-}
-echo validation_errors('<div class="alert alert-warning">', '</div>');
 
-?>
 
 <div class="mb-4">
     <div class="card">
@@ -19,6 +7,12 @@ echo validation_errors('<div class="alert alert-warning">', '</div>');
             <h6 class="m-0 font-weight-bold"><?php echo $title; ?></h6>
             <?php include "create_package.php"; ?>
         </div>
+        <?php
+        //Notifikasi
+        if ($this->session->flashdata('message')) {
+            echo $this->session->flashdata('message');
+        }
+        ?>
         <div class="table-responsive">
             <table class="table align-items-center table-flush">
                 <thead class="thead-light">

@@ -17,7 +17,7 @@ echo validation_errors('<div class="alert alert-warning">', '</div>');
     <div class="card">
         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
             <?php echo $title; ?>
-            <?php include "create_page.php"; ?>
+            <a href="<?php echo base_url('admin/page/create'); ?>" class="btn btn-success btn-sm text-white">Buat halaman</a>
         </div>
         <div class="table-responsive">
             <table class="table align-items-center table-flush">
@@ -38,8 +38,8 @@ echo validation_errors('<div class="alert alert-warning">', '</div>');
                             <td><?php echo date('H:i', $page->date_updated); ?></td>
 
                             <td>
-                                <a href="#" class="btn btn-sm btn-primary"><i class="ti-eye"></i> Lihat</a>
-                                <?php include "update_page.php"; ?>
+                                <a href="<?php echo base_url('page/detail/' . $page->page_slug); ?>" class="btn btn-sm btn-primary text-white"><i class="ti-eye"></i> Lihat</a>
+                                <a href="<?php echo base_url('admin/page/update/' . $page->id); ?>" class="btn btn-sm btn-success text-white"><i class="ti-edit"></i> Edit</a>
                                 <?php include "delete_page.php"; ?>
                             </td>
                         </tr>

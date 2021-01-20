@@ -12,6 +12,7 @@ class Auth extends CI_Controller
 
 	public function index()
 	{
+
 		if ($this->session->userdata('id')) {
 			redirect('myaccount');
 		}
@@ -138,6 +139,30 @@ class Auth extends CI_Controller
 			$this->load->view('front/layout/wrapp', $data, FALSE);
 		} else {
 
+			$nomor_hp = $this->input->post('user_phone');
+
+
+			// kadang ada penulisan no hp 0811 239 345
+			$nomor_hp = str_replace(" ", "", $nomor_hp);
+			// kadang ada penulisan no hp (0274) 778787
+			$nomor_hp = str_replace("(", "", $nomor_hp);
+			// kadang ada penulisan no hp (0274) 778787
+			$nomor_hp = str_replace(")", "", $nomor_hp);
+			// kadang ada penulisan no hp 0811.239.345
+			$nomor_hp = str_replace(".", "", $nomor_hp);
+
+			// cek apakah no hp mengandung karakter + dan 0-9
+			if (!preg_match('/[^+0-9]/', trim($nomor_hp))) {
+				// cek apakah no hp karakter 1-3 adalah +62
+				if (substr(trim($nomor_hp), 0, 3) == '+62') {
+					$hp = trim($nomor_hp);
+				}
+				// cek apakah no hp karakter 1 adalah 0
+				elseif (substr(trim($nomor_hp), 0, 1) == '0') {
+					$hp = '62' . substr(trim($nomor_hp), 1);
+				}
+			}
+
 			$email = $this->input->post('email', true);
 			$data = [
 				'user_title'	=> $this->input->post('user_title'),
@@ -145,7 +170,7 @@ class Auth extends CI_Controller
 				'email' 			=> htmlspecialchars($email),
 				'username'		=> $this->input->post('username'),
 				'user_image' 	=> 'default.jpg',
-				'user_phone'	=> $this->input->post('user_phone'),
+				'user_phone'	=> $hp,
 				'password'		=> password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
 				'role_id'			=> 5,
 				'is_active'		=> 0,

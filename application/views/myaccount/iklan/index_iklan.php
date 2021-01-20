@@ -67,7 +67,7 @@
 
 
                                                 <?php if ($iklan->iklan_featured <= date('Y-m-d')) : ?>
-                                                    <a class="btn btn-success btn-sm text-white" href="<?php echo base_url('myaccount/get_premium/' . $iklan->id); ?>"> <i class="ri-coupon-3-fill"></i> Sundul</a>
+                                                    <a class="btn btn-success btn-sm text-white" href="<?php echo base_url('myaccount/iklan/get_premium/' . $iklan->id); ?>"> <i class="ri-coupon-3-fill"></i> Sundul</a>
                                                 <?php else : ?>
                                                     <span class="btn btn-primary text-white btn-sm"> <i class="ri-vip-crown-fill"></i> <?php $date_format = $iklan->iklan_featured;
                                                                                                                                         $newDate = date("d/m/Y", strtotime($date_format));
@@ -76,7 +76,7 @@
 
 
 
-                                                <a class="btn btn-success btn-sm text-white" href="<?php echo base_url('myaccount/update_iklan/' . $iklan->id); ?>"> <i class="ri-edit-box-line"></i> Edit</a>
+                                                <a class="btn btn-success btn-sm text-white" href="<?php echo base_url('myaccount/iklan/update/' . $iklan->id); ?>"> <i class="ri-edit-box-line"></i> Edit</a>
                                                 <a class="btn btn-primary btn-sm text-white" href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>"> <i class="ri-eye-line"></i> View</a>
                                             </td>
 

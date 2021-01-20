@@ -15,6 +15,8 @@ class Unautorized extends CI_Controller
 
         $data = [
             'title'                 => 'Unautorized',
+            'deskripsi'             => 'Unautorized',
+            'keywords'              => 'Keywords',
             'content'               => 'myaccount/unautorized/index'
         ];
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);

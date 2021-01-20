@@ -50,4 +50,4 @@ $meta = $this->meta_model->get_meta();
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">

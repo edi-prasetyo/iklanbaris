@@ -11,7 +11,7 @@ $meta      = $this->meta_model->get_meta();
         </div>
     </div>
 </section>
-<footer class="pt-4 pt-md-5 pb-md-5 border-top bg-light">
+<div class="pt-4 pt-md-5 pb-md-5 border-top bg-light">
     <div class="container">
         <div class="row">
             <div class="col-12 col-md">
@@ -42,8 +42,8 @@ $meta      = $this->meta_model->get_meta();
 
         </div>
     </div>
-</footer>
-<div class="credit text-center text-light py-md-3">Copyright &copy; <?php echo date('Y') ?> - <?php echo $meta->title ?> - <?php echo $meta->tagline ?></div>
+</div>
+<footer class="credit text-center mt-auto text-light py-md-3">Copyright &copy; <?php echo date('Y') ?> - <?php echo $meta->title ?> - <?php echo $meta->tagline ?></footer>
 <!-- Load javascript Jquery -->
 <script src="<?php echo base_url() ?>assets/template/front/vendor/jquery/jquery.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>assets/template/front/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
