@@ -369,15 +369,19 @@ ul.navbar-nav .nav-item:after {
 }
 
 .footer {
-  background-color: #333 !important;
-  padding: 20px;
-  color: #fff !important;
+  background-color: #ffffff !important;
+
+  color: #333 !important;
 }
 .bantuan {
   background-color: #34495e;
 }
 .credit {
   background-color: #34495e;
+  color: #ffffff;
+}
+.credit a {
+  color: #ffffff;
 }
 
 .text_404 {
@@ -1736,17 +1740,11 @@ section {
   padding: 10px;
 }
 
-/* Custom Card Responsive */
-
-@media only screen and (min-width: 600px) {
-  /* For tablets: */
-  .col-responsive {
-    width: 3%;
-  }
-}
-@media only screen and (min-width: 768px) {
-  /* For desktop: */
-  .col-responsive {
-    width: 3%;
-  }
+.footer ul {
+  -moz-column-count: 3;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 3;
+  -webkit-column-gap: 20px;
+  column-count: 3;
+  column-gap: 20px;
 }
