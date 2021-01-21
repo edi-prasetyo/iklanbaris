@@ -11,7 +11,7 @@ class Profile extends CI_Controller
         $this->load->helper('short_number'); //calling helper short number format
         $this->load->library('pagination');
         $this->load->model('meta_model');
-        $this->load->model('company_model');
+        $this->load->model('iklan_model');
     }
 
     public function index()
@@ -19,11 +19,18 @@ class Profile extends CI_Controller
         $id = $this->session->userdata('id');
         $user = $this->user_model->user_detail($id);
 
+        $iklan_saya     = $this->iklan_model->total_iklan_user($id);
+        $iklan_active   = $this->iklan_model->total_iklan_user_active($id);
+        $iklan_pending  = $this->iklan_model->total_iklan_user_pending($id);
+
         $data = [
             'title'                 => 'Ubah Profile',
             'deskripsi'             => 'Deskripsi',
             'keywords'              => 'Keywords',
             'user'                  => $user,
+            'iklan_saya'        => $iklan_saya,
+            'iklan_active'      => $iklan_active,
+            'iklan_pending'     => $iklan_pending,
             'content'               => 'myaccount/profile/index_profile'
         ];
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);
@@ -32,7 +39,6 @@ class Profile extends CI_Controller
     {
         $id = $this->session->userdata('id');
         $user = $this->user_model->user_detail($id);
-        $company = $this->company_model->get_allcompany();
         $meta = $this->meta_model->get_meta();
 
         $this->form_validation->set_rules(
@@ -69,7 +75,6 @@ class Profile extends CI_Controller
                         'deskripsi'             => 'Deskripsi',
                         'keywords'              => 'Keywords',
                         'meta'                  => $meta,
-                        'company'               => $company,
                         'error_upload'          => $this->upload->display_errors(),
                         'content'               => 'myaccount/profile/update_profile'
                     ];
@@ -108,7 +113,6 @@ class Profile extends CI_Controller
 
                     $data  = [
                         'id'                    => $id,
-                        'company_id'            => $this->input->post('company_id'),
                         'user_name'             => $this->input->post('user_name'),
                         'user_phone'            => $this->input->post('user_phone'),
                         'user_whatsapp'         => $this->input->post('user_whatsapp'),
@@ -131,7 +135,6 @@ class Profile extends CI_Controller
                 if ($user->user_image != "")
                     $data  = [
                         'id'                    => $id,
-                        'company_id'            => $this->input->post('company_id'),
                         'user_name'             => $this->input->post('user_name'),
                         'user_phone'            => $this->input->post('user_phone'),
                         'user_whatsapp'         => $this->input->post('user_whatsapp'),
@@ -155,7 +158,6 @@ class Profile extends CI_Controller
             'keywords'              => 'update Account',
             'meta'                  => $meta,
             'user'                  => $user,
-            'company'               => $company,
             'content'               => 'myaccount/profile/update_profile'
         ];
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);

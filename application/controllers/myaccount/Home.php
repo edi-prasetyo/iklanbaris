@@ -27,7 +27,7 @@ class Home extends CI_Controller
             'iklan_saya'        => $iklan_saya,
             'iklan_active'      => $iklan_active,
             'iklan_pending'     => $iklan_pending,
-            'content'           => 'myaccount/home/index'
+            'content'           => 'myaccount/profile/index_profile'
         ];
 
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);

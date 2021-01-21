@@ -1735,3 +1735,18 @@ section {
   color: #ffffff;
   padding: 10px;
 }
+
+/* Custom Card Responsive */
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-responsive {
+    width: 3%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-responsive {
+    width: 3%;
+  }
+}

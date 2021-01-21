@@ -11,6 +11,7 @@ class Iklan extends CI_Controller
         $this->load->model('iklan_model');
         $this->load->model('category_model');
         $this->load->model('province_model');
+        $this->load->model('regularity_model');
     }
 
     // Listing Iklan iklan
@@ -76,6 +77,7 @@ class Iklan extends CI_Controller
         // Get type
         $category = $this->category_model->get_category_iklan();
         $province = $this->province_model->get_province();
+        $regularity = $this->regularity_model->get_regularity_seller();
         // Validasi
         $this->form_validation->set_rules(
             'iklan_title',
@@ -135,6 +137,7 @@ class Iklan extends CI_Controller
                     'keywords'      => 'keywords',
                     'category'          => $category,
                     'province'      => $province,
+                    'regularity'    => $regularity,
                     'content'       => 'myaccount/iklan/create_iklan'
                 ];
                 $this->load->view('myaccount/layout/wrapp', $data, FALSE);
@@ -194,6 +197,7 @@ class Iklan extends CI_Controller
             'keywords'      => 'keywords',
             'category'          => $category,
             'province'      => $province,
+            'regularity'    => $regularity,
             'content'       => 'myaccount/iklan/create_iklan'
         ];
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);
@@ -209,6 +213,7 @@ class Iklan extends CI_Controller
         $iklan = $this->iklan_model->iklan_detail($id);
         $category = $this->category_model->get_category_iklan();
         $province = $this->province_model->get_province();
+        $regularity = $this->regularity_model->get_regularity_seller();
 
         if ($iklan->user_id == $user_id) {
 
@@ -242,6 +247,7 @@ class Iklan extends CI_Controller
                             'category'     => $category,
                             'province'      => $province,
                             'iklan'       => $iklan,
+                            'regularity'    => $regularity,
                             'error_upload' => $this->upload->display_errors(),
                             'content'          => 'myaccount/iklan/update_iklan'
                         ];
@@ -332,6 +338,7 @@ class Iklan extends CI_Controller
                 'category'     => $category,
                 'province'      => $province,
                 'iklan'       => $iklan,
+                'regularity'    => $regularity,
                 'content'          => 'myaccount/iklan/update_iklan'
             ];
             $this->load->view('myaccount/layout/wrapp', $data, FALSE);

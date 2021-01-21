@@ -181,7 +181,11 @@
           </div>
           <div class="card-body">
 
-            Peraturan Iklan
+            <ul class="list-group list-group-flush">
+              <?php foreach ($regularity as $regularity) : ?>
+                <li class="list-group-item"><?php echo $regularity->regularity_name; ?> </li>
+              <?php endforeach; ?>
+            </ul>
 
 
           </div>

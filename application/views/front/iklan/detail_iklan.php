@@ -55,17 +55,35 @@
 
                                 <h4 class="my-4">Hubungi Penjual</h4>
 
-                                <!-- <button id="change-phrase" type="button">Change Phrase</button> -->
-                                <button id="change-phrase" class="btn btn-warning px-3"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
-                                <?php if ($iklan->user_whatsapp == true) : ?>
-                                    <span class="btn btn-success px-3"> <i class="ri-whatsapp-line"></i> Chat Whatsapp </span>
-                                <?php else : ?>
-                                <?php endif; ?>
+                                <div class="d-flex justify-content-between align-items-center">
 
-                                <br>
-                                <a href="" data-toggle="modal" data-target="#exampleModal"> <i class="ri-error-warning-line"></i> Laporkan Iklan</a>
+                                    <div class="col-md-10">
+                                        <button id="change-phrase" class="btn btn-warning px-3"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
+                                        <?php if ($iklan->user_whatsapp == true) : ?>
+                                            <span class="btn btn-success px-3"> <i class="ri-whatsapp-line"></i> Chat Whatsapp </span>
+                                        <?php else : ?>
+                                        <?php endif; ?>
+
+                                        <br>
+                                        <a href="" data-toggle="modal" data-target="#exampleModal"> <i class="ri-error-warning-line"></i> Laporkan Iklan</a>
+                                    </div>
+                                    <div class="col-md-2">
+
+                                        <div class="row text-center">
 
 
+
+                                            <div class="img-avatar">
+                                                <img class="img-fluid" src="<?php echo base_url('assets/img/avatars/' . $iklan->user_image); ?>">
+                                            </div>
+                                            <h6><a href="<?php echo base_url('iklan/user/' . $iklan->username); ?>"> <?php echo $iklan->user_name; ?></a></h6>
+
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div>
 
                         </div>
@@ -91,21 +109,18 @@
                 <div class="card my-2">
                     <div class="card-header">Info Penjual</div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-4">
-                                <div class="img-avatar">
-                                    <img class="img-fluid" src="<?php echo base_url('assets/img/avatars/' . $iklan->user_image); ?>">
-                                </div>
-                            </div>
-                            <div class="col-8">
-                                <h3><a href="<?php echo base_url('iklan/user/' . $iklan->username); ?>"> <?php echo $iklan->user_name; ?></a></h3>
-                                <p class="my-3"><i class="ri-map-pin-fill"></i> <?php echo $iklan->user_address; ?></p>
-                            </div>
 
-
-                        </div>
                     </div>
                 </div>
+
+                <ul class="list-group">
+                    <li class="list-group-item active bg-info border-0" aria-current="true">Tips membeli</li>
+                    <?php foreach ($regularity_buyer as $regularity_buyer) : ?>
+                        <li class="list-group-item"><?php echo $regularity_buyer->regularity_name; ?></li>
+
+                    <?php endforeach; ?>
+                </ul>
+
             </div>
 
 

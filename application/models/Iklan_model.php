@@ -376,4 +376,77 @@ class iklan_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+
+
+
+
+    public function getDataIklan($rowno, $rowperpage)
+    {
+
+        $this->db->select('iklan.*,category.category_name, category.category_slug, user.user_name, province.province_name');
+        $this->db->from('iklan');
+        // Join
+        $this->db->join('category', 'category.id = iklan.category_id', 'LEFT');
+        $this->db->join('user', 'user.id = iklan.user_id', 'LEFT');
+        $this->db->join('province', 'province.id = iklan.province_id', 'LEFT');
+        //End Join
+        $this->db->limit($rowno, $rowperpage);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    // Select total records
+    public function getrecordCountIklan()
+    {
+
+        $this->db->select('count(*) as allcount');
+        $this->db->from('iklan');
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        return $result[0]['allcount'];
+    }
+
+    // Fungsi Pencarian
+    // Fetch records
+    public function getData($rowno, $rowperpage, $search = "")
+    {
+
+        $this->db->select('iklan.*,category.category_name, category.category_slug, user.user_name, province.province_name');
+        $this->db->from('iklan');
+        // Join
+        $this->db->join('category', 'category.id = iklan.category_id', 'LEFT');
+        $this->db->join('user', 'user.id = iklan.user_id', 'LEFT');
+        $this->db->join('province', 'province.id = iklan.province_id', 'LEFT');
+        //End Join
+
+        if ($search != '') {
+            $this->db->like('iklan_title', $search);
+            $this->db->or_like('province_id', $search);
+        }
+
+        $this->db->limit($rowperpage, $rowno);
+        $query = $this->db->get();
+
+        return $query->result_array();
+    }
+
+    // Select total records
+    public function getrecordCount($search = '')
+    {
+
+        $this->db->select('count(*) as allcount');
+        $this->db->from('iklan');
+
+        if ($search != '') {
+            $this->db->like('iklan_title', $search);
+            $this->db->or_like('province_id', $search);
+        }
+
+        $query = $this->db->get();
+        $result = $query->result_array();
+
+        return $result[0]['allcount'];
+    }
 }

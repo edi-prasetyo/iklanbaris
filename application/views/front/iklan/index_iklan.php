@@ -14,6 +14,9 @@
 
 
 
+
+
+
         <?php if (!empty($iklan)) : ?>
 
             <div class="col-md-9">
@@ -47,24 +50,24 @@
                 <?php endforeach; ?>
 
 
-                <?php foreach ($iklan as $iklan) : ?>
+                <?php foreach ($iklan as $data) : ?>
 
-                    <a href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>">
+                    <a href="<?php echo base_url('iklan/detail/' . $data['iklan_slug']); ?>">
                         <div class="card my-2">
                             <div class="row">
                                 <div class="col-md-3">
                                     <div class="img-index-frame">
-                                        <img src="<?php echo base_url('assets/img/iklan/' . $iklan->iklan_image); ?>" class="img-fluid">
+                                        <img src="<?php echo base_url('assets/img/iklan/' . $data['iklan_image']); ?>" class="img-fluid">
                                     </div>
                                 </div>
                                 <div class="col-md-9 ">
                                     <div class="card-body">
                                         <div class="d-flex justify-content-between align-items-center">
-                                            <h4 class="text-success">IDR <?php echo number_format($iklan->iklan_price, 0, ",", "."); ?></h4>
-                                            <span class="badge badge-success badge-pill"><?php echo $iklan->category_name; ?></span>
+                                            <h4 class="text-success">IDR <?php echo number_format($data['iklan_price'], 0, ",", "."); ?></h4>
+                                            <span class="badge badge-success badge-pill"><?php echo $data['category_name']; ?></span>
                                         </div>
-                                        <h5 class="text-muted"> <?php echo $iklan->iklan_title; ?></h5>
-                                        <small><span class="text-muted">ID Iklan : </span> <?php echo $iklan->id_iklan; ?> <span class="text-muted ml-5">Dilihat : </span> <?php echo $iklan->iklan_views; ?> <span class="text-muted ml-5"> Lokasi : <?php echo $iklan->province_name; ?> </small><br>
+                                        <h5 class="text-muted"> <?php echo $data['iklan_title']; ?></h5>
+                                        <small><span class="text-muted">ID Iklan : </span> <?php echo $data['id_iklan']; ?> <span class="text-muted ml-5">Dilihat : </span> <?php echo $data['iklan_views']; ?> <span class="text-muted ml-5"> Lokasi : <?php echo $data['province_name']; ?> </small><br>
 
                                     </div>
 
@@ -104,6 +107,18 @@
 
 
         <div class="col-md-3">
+
+            <!-- Search form (start) -->
+            <?php echo form_open('iklan/search'); ?>
+            <div class="input-group mb-3">
+                <input type="text" name='search' class="form-control" placeholder="Cari Produk.." value='<?= $search ?>'>
+                <div class="input-group-append">
+                    <input type='submit' name='submit' value='Cari' class="btn btn-info">
+                </div>
+            </div>
+            <?php echo form_close(); ?>
+
+
             <div class="card">
                 <div class="card-header">
                     Semua Kategori
@@ -117,6 +132,8 @@
 
             </div>
         </div>
+
+
 
 
     </div>
