@@ -1,7 +1,7 @@
 <?php $meta = $this->meta_model->get_meta(); ?>
 <div class="container">
-  <div class="col-md-6 mx-auto" style="margin-top: 130px;">
-    <div class="card o-hidden border-0 shadow-lg my-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card o-hidden my-5">
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
 
@@ -34,7 +34,7 @@
           <hr>
 
           <div class="text-center">
-            <a class="small" href="<?php echo base_url('auth') ?> ">Back to Login</a>
+            <a class="small" href="<?php echo base_url('auth') ?> ">Kembali ke halaman Login</a>
           </div>
         </div>
 
