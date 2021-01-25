@@ -195,12 +195,12 @@ class Auth extends CI_Controller
 
 		if ($type == 'verify') {
 			$this->email->subject('Account Verification');
-			$this->email->message('Silahkan Klik Link di bawah ini untuk mengaktivasi akun 
-			<a href=" ' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . ' ">Aktivasi Akun</a>');
+			$this->email->message('Silahkan Klik Link di bawah ini untuk mengaktivasi akun <br>
+			<a style="background-color:#1aa35c;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;padding:0 15px 0 15px" href=" ' . base_url() . 'auth/verify?email=' . $this->input->post('email') . '&token=' . urlencode($token) . ' ">Aktivasi Akun &rarr;</a>');
 		} elseif ($type == 'forgot') {
 			$this->email->subject('Reset Password');
-			$this->email->message('Silahkan Klik Link ini untuk Mereset Password 
-			<a href=" ' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . ' ">Reset Password</a>');
+			$this->email->message('Silahkan Klik Link ini untuk Mereset Password <br>
+			<a style="background-color:#1aa35c;border-radius:3px;color:#ffffff;display:inline-block;font-family:sans-serif;font-size:16px;line-height:44px;text-align:center;text-decoration:none;padding:0 15px 0 15px" href=" ' . base_url() . 'auth/resetpassword?email=' . $this->input->post('email') . '&token=' . urlencode($token) . ' ">Reset Password &rarr;</a>');
 		}
 
 
