@@ -28,8 +28,7 @@ $meta           = $this->meta_model->get_meta();
               <i class="ti-user"></i> <?php echo $user->user_name; ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="<?php echo base_url('myaccount') ?>"><i class="ti-panel"></i> Panel</a>
-              <a class="dropdown-item" href="<?php echo base_url('myaccount/profile') ?>"><i class="ti-user"></i> Akun Saya</a>
+              <a class="dropdown-item" href="<?php echo base_url('myaccount') ?>"><i class="ti-user"></i> Akun Saya</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/iklan') ?>"><i class="ri-shopping-bag-line"></i> Iklan Saya</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/package') ?>"><i class="ri-vip-crown-line"></i> Paket Premium</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/transaction') ?>"><i class="ri-file-list-3-line"></i> Riwayat Transaksi</a>

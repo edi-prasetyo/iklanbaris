@@ -55,10 +55,16 @@
                                                 <?php if ($iklan->iklan_status == "Active") : ?>
                                                     <span class="badge badge-success" ;?>
                                                         <?php echo $iklan->iklan_status; ?>
-                                                    <?php elseif ($iklan->iklan_status == "Inactive") : ?>
-                                                        <span class="badge badge-danger" ;?>
-                                                            <?php echo $iklan->iklan_status; ?>
-                                                        <?php endif; ?>
+                                                    </span>
+                                                <?php elseif ($iklan->iklan_status == "Inactive") : ?>
+                                                    <span class="badge badge-danger" ;?>
+                                                        <?php echo $iklan->iklan_status; ?>
+                                                    </span>
+                                                <?php else : ?>
+                                                    <span class="badge badge-warning" ;?>
+                                                        <?php echo $iklan->iklan_status; ?>
+                                                    </span>
+                                                <?php endif; ?>
 
                                             </td>
 
@@ -69,15 +75,18 @@
                                                 <?php if ($iklan->iklan_featured <= date('Y-m-d')) : ?>
                                                     <a class="btn btn-success btn-sm text-white" href="<?php echo base_url('myaccount/iklan/get_premium/' . $iklan->id); ?>"> <i class="ri-coupon-3-fill"></i> Sundul</a>
                                                 <?php else : ?>
-                                                    <span class="btn btn-primary text-white btn-sm"> <i class="ri-vip-crown-fill"></i> <?php $date_format = $iklan->iklan_featured;
-                                                                                                                                        $newDate = date("d/m/Y", strtotime($date_format));
-                                                                                                                                        echo $newDate; ?></span>
+                                                    <div class="alert alert-warning"><i class="ri-vip-crown-fill"></i> Iklan Premium Berakhir pada <?php $date_format = $iklan->iklan_featured;
+                                                                                                                                                    $newDate = date("d/m/Y", strtotime($date_format));
+                                                                                                                                                    echo $newDate; ?></div>
                                                 <?php endif; ?>
 
 
-
-                                                <a class="btn btn-success btn-sm text-white" href="<?php echo base_url('myaccount/iklan/update/' . $iklan->id); ?>"> <i class="ri-edit-box-line"></i> Edit</a>
-                                                <a class="btn btn-primary btn-sm text-white" href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>"> <i class="ri-eye-line"></i> View</a>
+                                                <?php if ($iklan->iklan_status == "Inactive") : ?>
+                                                    <a class="btn btn-primary btn-sm text-white" href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>"> <i class="ri-eye-line"></i> View</a>
+                                                <?php else : ?>
+                                                    <a class="btn btn-success btn-sm text-white" href="<?php echo base_url('myaccount/iklan/update/' . $iklan->id); ?>"> <i class="ri-edit-box-line"></i> Edit</a>
+                                                    <a class="btn btn-primary btn-sm text-white" href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>"> <i class="ri-eye-line"></i> View</a>
+                                                <?php endif; ?>
                                             </td>
 
                                             </tr>

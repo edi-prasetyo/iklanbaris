@@ -11,19 +11,15 @@ class Transaction extends CI_Controller
     $this->load->model('category_model');
     $this->load->library('pagination');
   }
-  //listing data berita
+  //Index
   public function index()
   {
+    $transaction_code    =   $this->input->post('transaction_code');
+
     $config['base_url']       = base_url('admin/transaction/index/');
     $config['total_rows']     = count($this->transaction_model->total_row());
     $config['per_page']       = 10;
     $config['uri_segment']    = 4;
-    // $config['use_page_numbers'] = TRUE;
-    // $config['page_query_string'] = true;
-    // $config['query_string_segment'] = 'page';
-
-
-
 
     //Membuat Style pagination untuk BootStrap v4
     $config['first_link']       = 'First';
@@ -52,30 +48,31 @@ class Transaction extends CI_Controller
     //End Limit Start
     $this->pagination->initialize($config);
 
-    $transaction = $this->transaction_model->get_transaction($limit, $start);
+    $transaction = $this->transaction_model->get_transaction($limit, $start, $transaction_code);
     $data = [
-      'title'         => 'Data Transaksi',
+      'title'           => 'Data Transaksi',
       'transaction'     => $transaction,
-      'pagination'    => $this->pagination->create_links(),
-      'content'       => 'admin/transaction/index_transaction'
+      'pagination'      => $this->pagination->create_links(),
+      'content'         => 'admin/transaction/index_transaction'
     ];
     $this->load->view('admin/layout/wrapp', $data, FALSE);
   }
-  // Update Transaction
+  // View
   public function view($id)
   {
     $transaction = $this->transaction_model->transaction_detail($id);
     $data = [
-      'title'         => 'Detail Transaction',
+      'title'           => 'Detail Transaction',
       'transaction'     => $transaction,
-      'content'       => 'admin/transaction/view_transaction'
+      'content'         => 'admin/transaction/view_transaction'
     ];
     $this->load->view('admin/layout/wrapp', $data, FALSE);
   }
+  // Success
   public function success($id)
 
   {
-    //Proteksi delete
+    //Proteksi
     is_login();
     $transaction = $this->transaction_model->transaction_detail($id);
     $user_id = $transaction->user_id;
@@ -83,7 +80,7 @@ class Transaction extends CI_Controller
     // var_dump($user_id);
     // die;
     $data = [
-      'id'                          => $id,
+      'id'                              => $id,
       'transaction_status'              => 'Success',
     ];
     $this->transaction_model->update($data);
@@ -91,19 +88,21 @@ class Transaction extends CI_Controller
     $this->session->set_flashdata('message', 'Pembayaran sudah Berhasil');
     redirect($_SERVER['HTTP_REFERER']);
   }
+  // Update Count
   public function update_count_user($user_id, $transaction_count)
   {
 
     $data = [
       'id'                          => $user_id,
-      'premium_count'              => $transaction_count,
+      'premium_count'               => $transaction_count,
     ];
     $this->user_model->update($data);
   }
+  // Proses
   public function process($id)
 
   {
-    //Proteksi delete
+    //Proteksi
     is_login();
     $data = [
       'id'                                => $id,
@@ -114,13 +113,14 @@ class Transaction extends CI_Controller
     redirect($_SERVER['HTTP_REFERER']);
   }
 
+  // Decline
   public function decline($id)
 
   {
-    //Proteksi delete
+    //Proteksi
     is_login();
     $data = [
-      'id'                          => $id,
+      'id'                                => $id,
       'transaction_status'                => 'Decline',
     ];
     $this->transaction_model->update($data);

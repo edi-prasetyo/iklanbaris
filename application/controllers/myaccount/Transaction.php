@@ -24,7 +24,7 @@ class Transaction extends CI_Controller
 
         $config['base_url']       = base_url('myaccount/transaction/index/');
         $config['total_rows']     = count($this->transaction_model->total_row_transaction_user($id));
-        $config['per_page']       = 3;
+        $config['per_page']       = 10;
         $config['uri_segment']    = 4;
 
         //Membuat Style pagination untuk BootStrap v4
@@ -137,7 +137,7 @@ class Transaction extends CI_Controller
             }
 
             $data = [
-                'title'        => 'Konfirmasi Transaksi',
+                'title'         => 'Konfirmasi Transaksi',
                 'deskripsi'     => 'deskripsi',
                 'keywords'      => 'keywords',
                 'transaction'   => $transaction,

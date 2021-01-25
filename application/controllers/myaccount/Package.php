@@ -94,11 +94,11 @@ class Package extends CI_Controller
         $last_transaction                     = $this->transaction_model->last_transaction($insert_id);
         if ($last_transaction->user_id == $user_id) {
             $data = [
-                'title'                           => 'Order Sukses',
-                'deskripsi'                       => 'Sewa mobil Online',
-                'keywords'                        => 'Order Paket Premium',
+                'title'                             => 'Order Sukses',
+                'deskripsi'                         => 'Sewa mobil Online',
+                'keywords'                          => 'Order Paket Premium',
                 'last_transaction'                  => $last_transaction,
-                'content'                         => 'myaccount/package/success_package'
+                'content'                           => 'myaccount/package/success_package'
             ];
             $this->load->view('myaccount/layout/wrapp', $data, FALSE);
         } else {

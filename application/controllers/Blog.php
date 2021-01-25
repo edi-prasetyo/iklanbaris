@@ -17,6 +17,14 @@ class Blog extends CI_Controller
     //main page - Berita
     public function index()
     {
+
+
+
+
+
+
+
+
         $meta               = $this->meta_model->get_meta();
         $category_sidebar   = $this->category_model->get_category_sidebar();
         $recent_post        = $this->berita_model->recent_post();

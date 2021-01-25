@@ -83,15 +83,4 @@ class Bank_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    //Read Bank
-    public function read($bank_slug)
-    {
-        $this->db->select('*');
-        $this->db->from('bank');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->row();
-    }
-
-
 }

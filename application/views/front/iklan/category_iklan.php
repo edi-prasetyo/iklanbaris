@@ -60,7 +60,7 @@
                                             <span class="badge badge-success badge-pill"><?php echo $iklan->category_name; ?></span>
                                         </div>
                                         <h5 class="text-muted"> <?php echo $iklan->iklan_title; ?></h5>
-                                        <small><span class="text-muted">ID Iklan : </span> <?php echo $iklan->id_iklan; ?> <span class="text-muted ml-5">Dilihat : </span> <?php echo $iklan_premium->iklan_views; ?> <span class="text-muted ml-5"> Lokasi : <?php echo $iklan_premium->province_name; ?> </small><br>
+                                        <small><span class="text-muted">ID Iklan : </span> <?php echo $iklan->id_iklan; ?> <span class="text-muted ml-5">Dilihat : </span> <?php echo $iklan->iklan_views; ?> <span class="text-muted ml-5"> Lokasi : <?php echo $iklan->province_name; ?> </small><br>
 
                                     </div>
 

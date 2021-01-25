@@ -1,49 +1,67 @@
 <?php
 $meta      = $this->meta_model->get_meta();
+$page      = $this->page_model->get_page();
+$category   = $this->category_model->get_category_iklan();
 
 ?>
 
-<section class="bantuan py-md-3 mt-md-5">
+
+<div class="py-3 border-top bg-white mt-auto">
     <div class="container">
         <div class="row">
-            <div class="col-md-8 text-light"><span style="font-size:35px;font-weight:700;">Jual, beli, Sewa Property disini</span></div>
-            <div class="col-md-4 text-light"><span style="font-size:30px;font-weight:700;"></span></div>
-        </div>
-    </div>
-</section>
-<div class="pt-4 pt-md-5 pb-md-5 border-top bg-light">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-md">
+            <div class="col-md-3">
                 <a href="<?php echo base_url(); ?>"><img class="mb-2" src="<?php echo base_url('assets/img/logo/' . $meta->logo) ?>" alt="" width="250"></a>
                 <span style="font-size:18px;"><br>
                     <i class="ri-mail-send-line"></i> <?php echo $meta->email ?>
                 </span>
             </div>
-            <div class="col-6 col-md ml-md-5">
-                <h5>Halaman</h5>
-                <ul class="list-unstyled text-small">
-
-                    <li><i class="ri-arrow-right-s-line"></i> <a class="text-muted" href="#">Berita Property</a></li>
-                    <li><i class="ri-arrow-right-s-line"></i> <a class="text-muted" href="#">Cari Agen Property</a></li>
-                    <li><i class="ri-arrow-right-s-line"></i> <a class="text-muted" href="#">Pasang Iklan Gratis</a></li>
-
+            <div class="col-md-3">
+                <h5><?php echo $meta->title; ?></h5>
+                <ul class="list-unstyled">
+                    <?php foreach ($page as $page) : ?>
+                        <li class="my-2"> <a class="text-muted" href="<?php echo base_url('page/detail/' . $page->page_slug); ?>"><?php echo $page->page_title; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="col-5 col-md">
-                <h5>Griya Niaga</h5>
-                <ul class="list-unstyled text-small">
-                    <li><i class="ri-arrow-right-s-line"></i> <a class="text-muted" href="<?php echo base_url('contact') ?>">Tentang Kami</a></li>
-                    <li><i class="ri-arrow-right-s-line"></i> <a class="text-muted" href="<?php echo base_url('contact') ?>">Hubungi Kami</a></li>
-                    <li><i class="ri-arrow-right-s-line"></i> <a class="text-muted" href="<?php echo base_url('contact') ?>">Kebijakan Privasi</a></li>
-                    <li><i class="ri-arrow-right-s-line"></i> <a class="text-muted" href="<?php echo base_url('contact') ?>">Syarat Penggunaan</a></li>
+            <div class="col-md-6 footer">
+                <h5 class="text-muted">Kategori</h5>
+                <ul class="list-unstyled">
+                    <?php foreach ($category as $category) : ?>
+                        <li> <a class="text-muted" href="#"><?php echo $category->category_name; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
 
         </div>
     </div>
 </div>
-<footer class="credit text-center mt-auto text-light py-md-3">Copyright &copy; <?php echo date('Y') ?> - <?php echo $meta->title ?> - <?php echo $meta->tagline ?></footer>
+
+<div class="credit py-3">
+    <div class="container">
+        <div class="row d-flex justify-content-between align-items-center">
+            <div class="col-md-6">
+                <span>Copyright © 2019 - <?php echo date('Y') ?>, All Right Reserved</span>
+            </div>
+            <!-- End Col -->
+            <div class="col-md-6">
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Kebijakan Privasi</a></li>
+                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Syarat dan Ketentuan</a></li>
+                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Tips Aman Jual Beli</a></li>
+                </ul>
+            </div>
+            <!-- End col -->
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- End Copyright Container -->
+</div>
+<!-- End Copyright -->
+
+
+
+
+
 <!-- Load javascript Jquery -->
 <script src="<?php echo base_url() ?>assets/template/front/vendor/jquery/jquery.js" type="text/javascript"></script>
 <script src="<?php echo base_url() ?>assets/template/front/vendor/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
@@ -103,48 +121,9 @@ $meta      = $this->meta_model->get_meta();
 
 
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
 
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/template/front/vendor/slick/slick.min.js"></script>
 
-<script>
-    $('.responsive').slick({
-        dots: true,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 6,
-        slidesToScroll: 4,
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1
-                }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-        ]
-    });
-</script>
 
 
 <link href="<?php echo base_url(); ?>assets/template/front/vendor/select2/css/select2.css" rel="stylesheet" />

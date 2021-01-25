@@ -1,9 +1,9 @@
 <div class="container">
-  <div class="col-md-5 mx-auto" style="margin-top: 130px;">
-    <div class="card o-hidden border-0 shadow-lg my-5">
+  <div class="col-md-5 mx-auto">
+    <div class="card o-hidden my-5">
       <div class="card-header login-header">
-        <h3 class="text-center mb-4 mt-4">Register <i class="ti-arrow-right"></i></h3>
-        <p class="text-center mb-4">Create Account</p>
+        <h3 class="text-center mb-4 mt-4">Daftar <i class="ti-arrow-right"></i></h3>
+        <p class="text-center mb-4">Buat Akun Gratis, daftar sekarang</p>
       </div>
       <div class="card-body p-0">
         <!-- Nested Row within Card Body -->
@@ -33,7 +33,7 @@
               </div>
               <?php echo form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
                   <span class="input-group-text"><i class="ri-phone-line"></i> </span>
@@ -41,7 +41,7 @@
                 <input type="text" class="form-control" name="user_phone" placeholder="Nomor Handphone" value="<?php echo set_value('user_phone'); ?>">
               </div>
               <?php echo form_error('user_phone', '<small class="text-danger pl-3">', '</small>'); ?>
-            </div>
+            </div> -->
             <div class="form-group">
               <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -71,7 +71,7 @@
               </div>
             </div>
             <div class="submit-btn-area">
-              <button type="submit">Register <i class="ti-arrow-right"></i></button>
+              <button type="submit">Daftar <i class="ti-arrow-right"></i></button>
               <div class="login-other row mt-4">
               </div>
             </div>
@@ -79,10 +79,10 @@
             <?php echo form_close() ?>
             <hr>
             <div class="text-center">
-              <a class="small" href="<?php echo base_url('auth/forgotpassword'); ?>">Forgot Password?</a>
+              <a class="small" href="<?php echo base_url('auth/forgotpassword'); ?>">Lupa Password?</a>
             </div>
             <div class="text-center">
-              <a class="small" href="<?php echo base_url('auth') ?>">Already have an account? Login!</a>
+              <a class="small" href="<?php echo base_url('auth') ?>">Sudah punya akun? Login!</a>
             </div>
           </div>
         </div>

@@ -20,10 +20,10 @@ class Package extends CI_Controller
   //Index Package
   public function index()
   {
-    $config['base_url']       = base_url('admin/package/index/');
-    $config['total_rows']     = count($this->package_model->total_row());
-    $config['per_page']       = 5;
-    $config['uri_segment']    = 4;
+    $config['base_url']         = base_url('admin/package/index/');
+    $config['total_rows']       = count($this->package_model->total_row());
+    $config['per_page']         = 10;
+    $config['uri_segment']      = 4;
 
     //Membuat Style pagination untuk BootStrap v4
     $config['first_link']       = 'First';
@@ -53,9 +53,6 @@ class Package extends CI_Controller
     $this->pagination->initialize($config);
 
     $package = $this->package_model->get_allpackage($limit, $start);
-    // var_dump($package);
-    // die;
-    //Validasi
     $this->form_validation->set_rules(
       'package_name',
       'Nama Kategori',
@@ -69,17 +66,17 @@ class Package extends CI_Controller
     if ($this->form_validation->run() === FALSE) {
       $data = [
         'title'             => 'Paket Iklan',
-        'package'          => $package,
-        'pagination'    => $this->pagination->create_links(),
+        'package'           => $package,
+        'pagination'        => $this->pagination->create_links(),
         'content'           => 'admin/package/index_package'
       ];
       $this->load->view('admin/layout/wrapp', $data, FALSE);
     } else {
 
       $data  = [
-        'package_name'     => $this->input->post('package_name'),
+        'package_name'      => $this->input->post('package_name'),
         'package_price'     => $this->input->post('package_price'),
-        'package_post'     => $this->input->post('package_post'),
+        'package_post'      => $this->input->post('package_post'),
         'date_created'      => time()
       ];
       $this->package_model->create($data);
@@ -103,7 +100,7 @@ class Package extends CI_Controller
 
       $data = [
         'title'             => 'Edit kategori Berita',
-        'package'          => $package,
+        'package'           => $package,
         'content'           => 'admin/package/update_package'
       ];
       $this->load->view('admin/layout/wrapp', $data, FALSE);
@@ -114,7 +111,7 @@ class Package extends CI_Controller
         'id'                => $id,
         'package_name'      => $this->input->post('package_name'),
         'package_price'     => $this->input->post('package_price'),
-        'package_post'     => $this->input->post('package_post'),
+        'package_post'      => $this->input->post('package_post'),
         'date_updated'      => time()
       ];
       $this->package_model->update($data);

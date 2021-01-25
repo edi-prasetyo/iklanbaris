@@ -99,14 +99,14 @@
                                 <td><?php echo $transaksi_baru->transaction_user; ?></td>
                                 <td>IDR. <?php echo number_format($transaksi_baru->transaction_price, 0, ",", "."); ?></td>
                                 <td>
-                                    <?php if ($transaksi_baru->transaction_status == "success") : ?>
-                                        <span class="badge badge-success"><?php echo $transaksi_baru->transaction_status; ?></span>
+                                    <?php if ($transaksi_baru->transaction_status == "Decline") : ?>
+                                        <span class="badge badge-danger"><?php echo $transaksi_baru->transaction_status; ?></span>
                                     <?php elseif ($transaksi_baru->transaction_status == "Pending") : ?>
                                         <span class="badge badge-warning"><?php echo $transaksi_baru->transaction_status; ?></span>
                                     <?php elseif ($transaksi_baru->transaction_status == "Process") : ?>
                                         <span class="badge badge-info"><?php echo $transaksi_baru->transaction_status; ?></span>
                                     <?php else : ?>
-                                        <span class="badge badge-danger"><?php echo $transaksi_baru->transaction_status; ?></span>
+                                        <span class="badge badge-success"><?php echo $transaksi_baru->transaction_status; ?></span>
                                     <?php endif; ?>
                                 </td>
 

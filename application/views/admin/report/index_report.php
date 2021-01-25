@@ -22,6 +22,7 @@
             <thead class="thead-light">
                 <tr>
                     <th>No</th>
+                    <th>Pelapor</th>
                     <th>ID IKlan</th>
                     <th>Judul</th>
                     <th width="25%">Action</th>
@@ -31,11 +32,12 @@
             foreach ($report as $report) { ?>
                 <tr>
                     <td><?php echo $no; ?></td>
+                    <td><?php echo $report->user_name; ?></td>
                     <td><?php echo $report->id_iklan; ?></td>
                     <td><?php echo $report->iklan_title; ?></td>
 
                     <td>
-                        <a href="<?php echo base_url('admin/iklan/view/' . $report->iklan_id); ?>" class="btn btn-success btn-sm text-white"><i class="ti-eye"></i> Lihat</a>
+                        <a href="<?php echo base_url('admin/report/detail/' . $report->id); ?>" class="btn btn-success btn-sm text-white"><i class="ti-eye"></i> Lihat</a>
                     </td>
                 </tr>
 

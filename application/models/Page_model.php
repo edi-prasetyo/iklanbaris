@@ -17,36 +17,7 @@ class Page_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    public function get_page_blog()
-    {
-        $this->db->select('*');
-        $this->db->from('page');
-        $this->db->where('page_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function get_page_iklan($page_id)
-    {
-        $this->db->select('*');
-        $this->db->from('page');
-        $this->db->where(array(
-            'id'            => $page_id
-        ));
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->row();
-    }
 
-    public function get_page_sidebar()
-    {
-        $this->db->select('*');
-        $this->db->from('page');
-        $this->db->where('page_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
     public function detail_page($id)
     {
         $this->db->select('*');

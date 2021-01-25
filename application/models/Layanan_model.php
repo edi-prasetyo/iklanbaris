@@ -17,36 +17,6 @@ class Layanan_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    public function get_layanan_blog()
-    {
-        $this->db->select('*');
-        $this->db->from('layanan');
-        $this->db->where('layanan_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function get_layanan_iklan($layanan_id)
-    {
-        $this->db->select('*');
-        $this->db->from('layanan');
-        $this->db->where(array(
-            'id'            => $layanan_id
-        ));
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->row();
-    }
-
-    public function get_layanan_sidebar()
-    {
-        $this->db->select('*');
-        $this->db->from('layanan');
-        $this->db->where('layanan_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
     public function detail_layanan($id)
     {
         $this->db->select('*');

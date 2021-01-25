@@ -28,8 +28,7 @@ $meta           = $this->meta_model->get_meta();
               <i class="ti-user"></i> <?php echo $user->user_name; ?>
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="<?php echo base_url('myaccount') ?>"><i class="ti-panel"></i> Panel</a>
-              <a class="dropdown-item" href="<?php echo base_url('myaccount/profile') ?>"><i class="ti-user"></i> Akun Saya</a>
+              <a class="dropdown-item" href="<?php echo base_url('myaccount') ?>"><i class="ti-user"></i> Akun Saya</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/iklan') ?>"><i class="ri-shopping-bag-line"></i> Iklan Saya</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/package') ?>"><i class="ri-vip-crown-line"></i> Paket Premium</a>
               <a class="dropdown-item" href="<?php echo base_url('myaccount/transaction') ?>"><i class="ri-file-list-3-line"></i> Riwayat Transaksi</a>
@@ -43,8 +42,9 @@ $meta           = $this->meta_model->get_meta();
           </li>
         <?php } else { ?>
           <li class="nav-item"><a class="nav-link" href="<?php echo base_url('auth') ?>"><i class="ri-login-box-line"></i> Login</a></li>
-          <span class="border-left"></span>
-          <li class="nav-item"><a class="nav-link" href="<?php echo base_url('auth/register') ?>"> Daftar</a></li>
+          <span class="border-left mr-3"></span>
+          <!-- <li class="nav-item"><a class="nav-link" href="<?php echo base_url('auth/register') ?>"> Daftar</a></li> -->
+          <a class="btn btn-success text-white my-auto" href="<?php echo base_url('auth'); ?>"> Pasang Iklan</a>
         <?php } ?>
       </ul>
     </div>

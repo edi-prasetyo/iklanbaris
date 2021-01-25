@@ -31,8 +31,9 @@ class Report extends CI_Controller
         } else {
 
             $data  = [
-                'iklan_id'     => $this->input->post('iklan_id'),
-                'report_desc'     => $this->input->post('report_desc'),
+                'user_id'           => $this->session->userdata('id'),
+                'iklan_id'          => $this->input->post('iklan_id'),
+                'report_desc'       => $this->input->post('report_desc'),
                 'date_created'      => time()
             ];
             $this->report_model->create($data);

@@ -4,7 +4,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class iklan_model extends CI_Model
 {
 
-    public function get_alliklan($limit, $start)
+    public function get_alliklan($limit, $start, $id_iklan)
     {
         $this->db->select('iklan.*, user.user_image,user.user_name, province.province_name, category.category_name');
         $this->db->from('iklan');
@@ -14,6 +14,7 @@ class iklan_model extends CI_Model
         $this->db->join('user', 'user.id = iklan.user_id', 'LEFT');
         $this->db->join('province', 'province.id = iklan.province_id', 'left');
         // End Join
+        $this->db->like('id_iklan', $id_iklan);
         $this->db->order_by('id', 'DESC');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
@@ -246,14 +247,14 @@ class iklan_model extends CI_Model
 
     // FRONT VIEW
 
-    //Read Properti
     public function read($iklan_slug)
     {
-        $this->db->select('iklan.*,user.user_name,user.user_image, user.user_bio, user.date_register, user.user_phone, user.user_whatsapp, user.email, user.username, user.user_address, province.province_name');
+        $this->db->select('iklan.*,user.user_name,user.user_image, user.user_bio, user.date_register, user.user_phone, user.user_whatsapp, user.email, user.username, user.user_address, province.province_name, category.category_name');
         $this->db->from('iklan');
         // Join
         $this->db->join('user', 'user.id = iklan.user_id', 'LEFT');
         $this->db->join('province', 'province.id = iklan.province_id', 'left');
+        $this->db->join('category', 'category.id = iklan.category_id', 'left');
 
         //End Join
         $this->db->where('iklan.iklan_slug',  $iklan_slug);
@@ -390,6 +391,7 @@ class iklan_model extends CI_Model
         $this->db->join('user', 'user.id = iklan.user_id', 'LEFT');
         $this->db->join('province', 'province.id = iklan.province_id', 'LEFT');
         //End Join
+        $this->db->where('iklan_status', 'Active');
         $this->db->limit($rowno, $rowperpage);
         $query = $this->db->get();
 
@@ -402,6 +404,7 @@ class iklan_model extends CI_Model
 
         $this->db->select('count(*) as allcount');
         $this->db->from('iklan');
+        $this->db->where('iklan_status', 'Active');
         $query = $this->db->get();
         $result = $query->result_array();
 
@@ -420,6 +423,7 @@ class iklan_model extends CI_Model
         $this->db->join('user', 'user.id = iklan.user_id', 'LEFT');
         $this->db->join('province', 'province.id = iklan.province_id', 'LEFT');
         //End Join
+        $this->db->where('iklan_status', 'Active');
 
         if ($search != '') {
             $this->db->like('iklan_title', $search);

@@ -17,6 +17,33 @@ class Menu_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_footer_1()
+    {
+        $this->db->select('*');
+        $this->db->from('menu');
+        $this->db->where('menu_location', 'footer_1');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_footer_2()
+    {
+        $this->db->select('*');
+        $this->db->from('menu');
+        $this->db->where('menu_location', 'footer_2');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_footer_3()
+    {
+        $this->db->select('*');
+        $this->db->from('menu');
+        $this->db->where('menu_location', 'footer_3');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
 
 

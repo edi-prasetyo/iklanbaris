@@ -1,4 +1,11 @@
 <div class="container my-5">
+
+	<?php
+	//Notifikasi
+	if ($this->session->flashdata('message')) {
+		echo $this->session->flashdata('message');
+	}
+	?>
 	<div class="row">
 
 		<div class="col-md-4">
@@ -116,12 +123,7 @@
 
 				<div class="card-body">
 
-					<?php
-					//Notifikasi
-					if ($this->session->flashdata('message')) {
-						echo $this->session->flashdata('message');
-					}
-					?>
+
 
 					<ul class="list-group list-group-flush">
 						<li class="list-group-item d-flex justify-content-between align-items-center">
@@ -141,7 +143,17 @@
 							<?php echo $user->user_phone; ?>
 						</li>
 						<li class="list-group-item d-flex justify-content-between align-items-center">
+							<span class="font-weight-bold">Whatsapp</span>
+							<?php if ($user->user_whatsapp == 1) : ?>
+								<span class="badge badge-success">Aktif</span>
+							<?php else : ?>
+								<span class="badge badge-danger">Tidak Aktif</span>
+							<?php endif; ?>
+
+						</li>
+						<li class="list-group-item d-flex justify-content-between align-items-center">
 							<span class="font-weight-bold">Alamat</span>
+
 							<?php echo $user->user_address; ?>
 						</li>
 					</ul>

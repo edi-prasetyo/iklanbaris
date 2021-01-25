@@ -22,7 +22,7 @@ class Category extends CI_Controller
 
         $config['base_url']       = base_url('admin/category/index/');
         $config['total_rows']     = count($this->category_model->total_row());
-        $config['per_page']       = 6;
+        $config['per_page']       = 10;
         $config['uri_segment']    = 4;
 
         //Membuat Style pagination untuk BootStrap v4

@@ -44,7 +44,7 @@
 
         <div class="col">
           <a href=" <?php echo base_url('iklan/category/' . $category->category_slug); ?>">
-            <div class="card">
+            <div class="card my-2">
               <div class="card-body text-center">
                 <img class="img-fluid" src="<?php echo base_url('assets/img/category/' . $category->category_image); ?>">
                 <?php echo $category->category_name; ?>
@@ -52,8 +52,24 @@
 
           </a>
         </div>
+
+
+
+
     </div>
   <?php endforeach; ?>
+
+  <div class="col">
+    <a href=" <?php echo base_url('category/') ?>">
+      <div class="card my-2">
+        <div class="card-body text-center">
+
+          <img src="<?php echo base_url('assets/img/galery/app-category.png'); ?>" class="img-fluid">
+          Lainnya
+
+
+    </a>
+  </div>
 
   </div>
 

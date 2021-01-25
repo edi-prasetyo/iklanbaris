@@ -82,7 +82,7 @@ class Iklan extends CI_Controller
     // }
 
     // Row per page
-    $rowperpage = 3;
+    $rowperpage = 10;
     // Row position
     if ($rowno != 0) {
       $rowno = ($rowno - 1) * $rowperpage;
@@ -158,12 +158,12 @@ class Iklan extends CI_Controller
     $regularity_buyer = $this->regularity_model->get_regularity_buyer();
 
     $data = [
-      'title'        => $iklan->iklan_title,
-      'deskripsi'   => 'Iklan - ' . $meta->description,
-      'keywords'    => 'Iklan - ' . $meta->keywords,
-      'iklan'     => $iklan,
+      'title'             => $iklan->iklan_title,
+      'deskripsi'         => 'Iklan - ' . $meta->description,
+      'keywords'          => $iklan->iklan_keywords,
+      'iklan'             => $iklan,
       'regularity_buyer'  => $regularity_buyer,
-      'content'          => 'front/iklan/detail_iklan'
+      'content'           => 'front/iklan/detail_iklan'
     ];
     $this->add_count($iklan_slug);
     $this->load->view('front/layout/wrapp', $data, FALSE);
@@ -247,8 +247,8 @@ class Iklan extends CI_Controller
     }
 
     $user_list                 = $this->user_model->read($username);
-    $user_id                = $user_list->id;
-    $category = $this->category_model->get_category_iklan();
+    $user_id                    = $user_list->id;
+    $category                 = $this->category_model->get_category_iklan();
 
     // $meta                       = $this->meta_model->listing();
     // Listing Berita Dengan Pagination

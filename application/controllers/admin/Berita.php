@@ -20,11 +20,10 @@ class Berita extends CI_Controller
     //listing data berita
     public function index()
     {
-        $config['base_url']       = base_url('admin/berita/index/');
-        $config['total_rows']     = count($this->berita_model->total_row());
-        $config['per_page']       = 10;
-        $config['uri_segment']    = 4;
-
+        $config['base_url']         = base_url('admin/berita/index/');
+        $config['total_rows']       = count($this->berita_model->total_row());
+        $config['per_page']         = 10;
+        $config['uri_segment']      = 4;
         //Membuat Style pagination untuk BootStrap v4
         $config['first_link']       = 'First';
         $config['last_link']        = 'Last';
@@ -64,8 +63,6 @@ class Berita extends CI_Controller
     //Create New Berita
     public function create()
     {
-
-
         $category = $this->category_model->get_category_blog();
         // Validasi
         $this->form_validation->set_rules(
@@ -96,10 +93,10 @@ class Berita extends CI_Controller
 
                 //End Validasi
                 $data = [
-                    'title'        => 'Tambah Berita',
-                    'category'     => $category,
-                    'error_upload' => $this->upload->display_errors(),
-                    'content'       => 'admin/berita/create_berita'
+                    'title'                 => 'Tambah Berita',
+                    'category'              => $category,
+                    'error_upload'          => $this->upload->display_errors(),
+                    'content'               => 'admin/berita/create_berita'
                 ];
                 $this->load->view('admin/layout/wrapp', $data, FALSE);
 
@@ -107,15 +104,10 @@ class Berita extends CI_Controller
 
             } else {
 
-                //Proses Manipulasi Gambar
+                //Proses Upload Gambar
                 $upload_data    = array('uploads'  => $this->upload->data());
-                //Gambar Asli disimpan di folder assets/upload/image
-                //lalu gambara Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
-
                 $config['image_library']    = 'gd2';
                 $config['source_image']     = './assets/img/artikel/' . $upload_data['uploads']['file_name'];
-                //Gambar Versi Kecil dipindahkan
-                // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                 $config['create_thumb']     = TRUE;
                 $config['maintain_ratio']   = TRUE;
                 $config['width']            = 500;
@@ -144,24 +136,20 @@ class Berita extends CI_Controller
         }
         //End Masuk Database
         $data = [
-            'title'        => 'Tambah Berita',
-            'category'     => $category,
-            'content'          => 'admin/berita/create_berita'
+            'title'             => 'Tambah Berita',
+            'category'          => $category,
+            'content'           => 'admin/berita/create_berita'
         ];
         $this->load->view('admin/layout/wrapp', $data, FALSE);
     }
-
 
     //Edit Berita
     public function Update($id)
     {
         $berita = $this->berita_model->berita_detail($id);
-        //Validasi
         $category = $this->category_model->get_category_blog();
-
         //Validasi
         $valid = $this->form_validation;
-
         $valid->set_rules(
             'berita_title',
             'Judul Berita',
@@ -175,8 +163,6 @@ class Berita extends CI_Controller
             'required',
             ['required'      => '%s harus diisi']
         );
-
-
         if ($valid->run()) {
             //Kalau nggak Ganti gambar
             if (!empty($_FILES['berita_gambar']['name'])) {
@@ -191,11 +177,11 @@ class Berita extends CI_Controller
 
                     //End Validasi
                     $data = [
-                        'title'        => 'Edit Berita',
-                        'category'     => $category,
-                        'berita'       => $berita,
-                        'error_upload' => $this->upload->display_errors(),
-                        'content'          => 'admin/berita/update_berita'
+                        'title'             => 'Edit Berita',
+                        'category'          => $category,
+                        'berita'            => $berita,
+                        'error_upload'      => $this->upload->display_errors(),
+                        'content'           => 'admin/berita/update_berita'
                     ];
                     $this->load->view('admin/layout/wrapp', $data, FALSE);
 
@@ -203,15 +189,10 @@ class Berita extends CI_Controller
 
                 } else {
 
-                    //Proses Manipulasi Gambar
+                    //Proses Upload Gambar
                     $upload_data    = array('uploads'  => $this->upload->data());
-                    //Gambar Asli disimpan di folder assets/upload/image
-                    //lalu gambar Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
-
                     $config['image_library']    = 'gd2';
                     $config['source_image']     = './assets/img/artikel/' . $upload_data['uploads']['file_name'];
-                    //Gambar Versi Kecil dipindahkan
-                    // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                     $config['create_thumb']     = TRUE;
                     $config['maintain_ratio']   = TRUE;
                     $config['width']            = 500;
@@ -219,13 +200,10 @@ class Berita extends CI_Controller
                     $config['thumb_marker']     = '';
 
                     $this->load->library('image_lib', $config);
-
                     $this->image_lib->resize();
-
                     // Hapus Gambar Lama Jika Ada upload gambar baru
                     if ($berita->berita_gambar != "") {
                         unlink('./assets/img/artikel/' . $berita->berita_gambar);
-                        // unlink('./assets/img/artikel/thumbs/' . $berita->berita_gambar);
                     }
                     //End Hapus Gambar
 
@@ -250,7 +228,7 @@ class Berita extends CI_Controller
                 // Hapus Gambar Lama Jika ada upload gambar baru
                 if ($berita->berita_gambar != "")
                     $data  = [
-                        'id'         => $id,
+                        'id'                => $id,
                         'user_id'           => $this->session->userdata('id'),
                         'category_id'       => $this->input->post('category_id'),
                         // 'berita_slug'       => url_title($this->input->post('berita_title'), 'dash', TRUE),
@@ -268,10 +246,10 @@ class Berita extends CI_Controller
         }
         //End Masuk Database
         $data = [
-            'title'        => 'Update Berita',
-            'category'     => $category,
-            'berita'       => $berita,
-            'content'          => 'admin/berita/update_berita'
+            'title'             => 'Update Berita',
+            'category'          => $category,
+            'berita'            => $berita,
+            'content'           => 'admin/berita/update_berita'
         ];
         $this->load->view('admin/layout/wrapp', $data, FALSE);
     }
@@ -287,7 +265,6 @@ class Berita extends CI_Controller
 
         if ($berita->berita_gambar != "") {
             unlink('./assets/img/artikel/' . $berita->berita_gambar);
-            // unlink('./assets/img/artikel/thumbs/' . $berita->berita_gambar);
         }
         //End Hapus Gambar
         $data = ['id'   => $berita->id];

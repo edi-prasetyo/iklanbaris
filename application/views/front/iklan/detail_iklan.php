@@ -33,56 +33,49 @@
                                 <!-- </div> -->
                             </div>
                             <div class="col-md-6">
-                                <h3 class="text-success">IDR. <?php echo number_format($iklan->iklan_price, 0, ",", "."); ?></h3>
-                                <h2><?php echo $iklan->iklan_title; ?></h2>
-                                <small> <span class="text-muted">ID Iklan: </span> <?php echo $iklan->id_iklan; ?> <span class="text-muted ml-5">Dilihat: </span> <?php echo $iklan->iklan_views; ?></small> <br>
 
-                                <h4 class="my-4">Info Iklan</h4>
+                                <div class="d-flex flex-row align-items-center justify-content-between">
+                                    <h3 class="text-success"><span class="font-weight-bold"> IDR. <?php echo number_format($iklan->iklan_price, 0, ",", "."); ?> </span> <small><?php echo $iklan->iklan_negotiable; ?></small> </h3>
+                                    <?php if ($iklan->iklan_featured <= date('Y-m-d')) : ?>
+
+                                    <?php else : ?>
+                                        <div class="badge badge-success"> <i class="ri-vip-crown-fill"></i> Iklan Premium </div>
+                                    <?php endif; ?>
+                                </div>
+
+
+
+                                <h2><?php echo $iklan->iklan_title; ?></h2>
+
                                 <div class="row">
                                     <div class="col-6">
-                                        <strong>Merek : </strong> <?php echo $iklan->iklan_merek; ?>
+                                        <strong>ID Iklan : </strong><?php echo $iklan->id_iklan; ?>
                                     </div>
                                     <div class="col-6">
-                                        <strong>Model : </strong><?php echo $iklan->iklan_type; ?>
+                                        <strong>Dilihat : </strong>
+                                        <?php echo $iklan->iklan_views; ?> kali
                                     </div>
                                     <div class="col-6">
-                                        <strong>Kondisi : </strong><?php echo $iklan->iklan_kondisi; ?>
+                                        <strong>Lokasi : </strong><?php echo $iklan->province_name; ?>
                                     </div>
                                     <div class="col-6">
                                         <strong>Lokasi : </strong><?php echo $iklan->province_name; ?>
                                     </div>
                                 </div>
 
-                                <h4 class="my-4">Hubungi Penjual</h4>
+                                <h5 class="my-4">Hubungi Penjual</h5>
+                                <i class="ri-user-3-fill"></i> <a href="<?php echo base_url('iklan/user/' . $iklan->username); ?>"><?php echo $iklan->user_name; ?></a>
+                                <br>
+                                <button id="change-phrase" class="btn btn-warning px-3"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
+                                <?php if ($iklan->user_whatsapp == true) : ?>
+                                    <a href="https://api.whatsapp.com/send?phone=<?php echo $iklan->user_phone; ?>" class="btn btn-success px-3 text-white my-2"> <i class="ri-whatsapp-line"></i> Chat Whatsapp </a>
+                                <?php else : ?>
+                                <?php endif; ?>
 
-                                <div class="d-flex justify-content-between align-items-center">
-
-                                    <div class="col-md-10">
-                                        <button id="change-phrase" class="btn btn-warning px-3"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
-                                        <?php if ($iklan->user_whatsapp == true) : ?>
-                                            <span class="btn btn-success px-3"> <i class="ri-whatsapp-line"></i> Chat Whatsapp </span>
-                                        <?php else : ?>
-                                        <?php endif; ?>
-
-                                        <br>
-                                        <a href="" data-toggle="modal" data-target="#exampleModal"> <i class="ri-error-warning-line"></i> Laporkan Iklan</a>
-                                    </div>
-                                    <div class="col-md-2">
-
-                                        <div class="row text-center">
-
-
-
-                                            <div class="img-avatar">
-                                                <img class="img-fluid" src="<?php echo base_url('assets/img/avatars/' . $iklan->user_image); ?>">
-                                            </div>
-                                            <h6><a href="<?php echo base_url('iklan/user/' . $iklan->username); ?>"> <?php echo $iklan->user_name; ?></a></h6>
-
-
-                                        </div>
-                                    </div>
-
-
+                                <br>
+                                <a href="" data-toggle="modal" data-target="#exampleModal"> <i class="ri-error-warning-line"></i> Laporkan Iklan</a>
+                                <div class="alert alert-danger">
+                                    <i class="ri-folder-warning-line"></i> Peringatan..!! Untuk transaksi lebih aman, jangan pernah melakukan transfer ke rekening penjual, Minta COD untuk transaksi lebih aman.
                                 </div>
                             </div>
 
@@ -105,13 +98,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card my-2">
-                    <div class="card-header">Info Penjual</div>
-                    <div class="card-body">
+            <div class="col-md-4 my-2">
 
-                    </div>
-                </div>
 
                 <ul class="list-group">
                     <li class="list-group-item active bg-info border-0" aria-current="true">Tips membeli</li>
@@ -142,12 +130,19 @@
     <?php endif; ?>
 </div>
 
+<?php
+
+
+?>
+
 <script>
     var button = document.getElementById('change-phrase'),
         content = document.getElementById('change-phrase');
 
     button.onclick = function() {
-        content.innerHTML = '<?php echo $iklan->user_phone; ?>';
+        content.innerHTML = '<i class="ri-phone-line"></i> <?php
+                                                            $hp = substr_replace($iklan->user_phone, '0', 0, 3);
+                                                            echo $hp; ?>';
     };
 </script>
 

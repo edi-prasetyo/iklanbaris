@@ -19,7 +19,7 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">
-            <i class="ri-community-line"></i> Mulai Jual Barang Anda
+            Mulai Pasang Iklan Anda
           </div>
 
           <div class="card-body">
@@ -30,7 +30,7 @@
             ?>
 
             <div class="form-group row">
-              <label class="col-3">Provinsi <span class="text-danger">*</span>
+              <label class="col-3">Lokasi <span class="text-danger">*</span>
               </label>
               <div class="col-9">
                 <select name="province_id" id="province" class="form-control form-control-lg select2" data-live-search="true">
@@ -65,38 +65,6 @@
               </div>
             </div>
 
-            <div class="form-group row">
-              <label class="col-3">Kondisi Barang</label>
-              <div class="col-9">
-                <div class="form-check col-6">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="iklan_kondisi" value="Baru">Baru
-                  </label>
-                </div>
-                <div class="form-check col-6">
-                  <label class="form-check-label">
-                    <input type="radio" class="form-check-input" name="iklan_kondisi" value="Bekas">Bekas
-                  </label>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="form-group row">
-              <label class="col-3" for="exampleInputEmail1">Merek</label>
-              <div class="col-9">
-                <input type="text" name="iklan_merek" class="form-control form-control-lg" placeholder="Merek Barang.." value="<?php echo set_value('iklan_merek'); ?>">
-                <?php echo form_error('iklan_merek', '<p class="text-danger">', '</p>'); ?>
-              </div>
-            </div>
-
-            <div class="form-group row">
-              <label class="col-3">Model</label>
-              <div class="col-9">
-                <input type="text" name="iklan_type" class="form-control form-control-lg" placeholder="Model .." value="<?php echo set_value('iklan_type'); ?>">
-                <?php echo form_error('iklan_type', '<p class="text-danger">', '</p>'); ?>
-              </div>
-            </div>
 
             <div class="form-group row">
               <label class="col-3">Harga</label>
@@ -162,10 +130,6 @@
                 <input type="submit" class="btn btn-info btn-block" value="Pasang Iklan">
               </div>
             </div>
-
-
-
-
             <?php echo form_close() ?>
 
 
@@ -173,23 +137,14 @@
         </div>
       </div>
 
-
       <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">
-            <i class="ri-image-edit-line"></i> Peraturan
-          </div>
-          <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item bg-danger text-white"><i class="ri-image-edit-line"></i> Peraturan</li>
+          <?php foreach ($regularity as $regularity) : ?>
+            <li class="list-group-item list-group-item-danger"><?php echo $regularity->regularity_name; ?> </li>
+          <?php endforeach; ?>
 
-            <ul class="list-group list-group-flush">
-              <?php foreach ($regularity as $regularity) : ?>
-                <li class="list-group-item"><?php echo $regularity->regularity_name; ?> </li>
-              <?php endforeach; ?>
-            </ul>
-
-
-          </div>
-        </div>
+        </ul>
       </div>
     </div>
   </div>

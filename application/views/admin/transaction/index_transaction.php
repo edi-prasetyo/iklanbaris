@@ -7,10 +7,11 @@ $user = $this->user_model->user_detail($id);
 <div class="my-3">
   <div class="card">
     <div class="card-header">
-      <div class="form-row d-flex justify-content-between align-items-center ">
+      <div class="form-row d-flex justify-content-between align-items-center">
 
+        <?php echo $title; ?>
 
-        <?php echo form_open('admin/pemasukan'); ?>
+        <?php echo form_open('admin/transaction'); ?>
 
         <div class="col-sm-12 my-1 row">
 
@@ -19,11 +20,11 @@ $user = $this->user_model->user_detail($id);
               <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fas fa-search"></i></div>
               </div>
-              <input type="text" class="form-control" name="keyword" placeholder="Cari Transaksi">
+              <input type="text" class="form-control" name="transaction_code" placeholder="Cari Transaksi">
             </div>
           </div>
           <div class="col-auto">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Cari</button>
 
           </div>
 

@@ -13,10 +13,10 @@
         ?>
 
         <div class="form-group row">
-            <label class="col-lg-3 col-form-label">Nama Menu (IDN) <span class="text-danger">*</span>
+            <label class="col-lg-3 col-form-label">Nama Menu <span class="text-danger">*</span>
             </label>
             <div class="col-lg-6">
-                <input type="text" class="form-control" name="nama_menu_ind" value="<?php echo $menu->nama_menu_ind; ?>">
+                <input type="text" class="form-control" name="menu_name" value="<?php echo $menu->menu_name; ?>">
 
             </div>
         </div>
@@ -25,17 +25,28 @@
             <label class="col-lg-3 col-form-label">Url <span class="text-danger">*</span>
             </label>
             <div class="col-lg-6">
-                <input type="text" class="form-control" name="url" value="<?php echo $menu->url; ?>">
+                <input type="text" class="form-control" name="menu_url" value="<?php echo $menu->menu_url; ?>">
             </div>
         </div>
 
         <div class="form-group row">
-            <label class="col-lg-3 col-form-label">Urutan <span class="text-danger">*</span>
+            <label class="col-lg-3 col-form-label">Lokasi Menu <span class="text-danger">*</span>
             </label>
             <div class="col-lg-6">
-                <input type="text" class="form-control" name="urutan" value="<?php echo $menu->urutan; ?>">
+                <select name="menu_location" class="form-control custom-select">
+                    <option value="footer_1" <?php if ($menu->menu_location == "footer_1") {
+                                                    echo "selected";
+                                                } ?>>Footer 1</option>
+                    <option value="footer_2" <?php if ($menu->menu_location == "footer_2") {
+                                                    echo "selected";
+                                                } ?>>Footer 2</option>
+                    <option value="footer_3" <?php if ($menu->menu_location == "footer_3") {
+                                                    echo "selected";
+                                                } ?>>Footer 3</option>
+                </select>
             </div>
         </div>
+
         <div class="form-group row">
             <div class="col-lg-3"></div>
             <div class="col-lg-6">

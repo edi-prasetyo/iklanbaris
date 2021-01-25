@@ -26,13 +26,14 @@ class transaction_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    public function get_transaction($limit, $start)
+    public function get_transaction($limit, $start, $transaction_code)
     {
-        $this->db->select('transaction.*, user.user_name, user.user_phone');
+        $this->db->select('transaction.*, user.user_name, user.user_phone,');
         $this->db->from('transaction');
         // Join
         $this->db->join('user', 'user.id = transaction.user_id', 'LEFT');
         //End Join
+        $this->db->like('transaction_code', $transaction_code);
         $this->db->order_by('id', 'DESC');
         $this->db->limit($limit, $start);
         $query = $this->db->get();

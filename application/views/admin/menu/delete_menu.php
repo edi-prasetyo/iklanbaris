@@ -12,11 +12,11 @@
                     <span aria-hidden="true"><i class="fa fa-window-close"></i></span></button>
             </div>
             <div class="modal-body">
-                <p>Apakah Anda Yakin Ingin Menghapus Menu <b><?php echo $menu->nama_menu_ind ?></b>?</p>
+                <p>Apakah Anda Yakin Ingin Menghapus Menu <b><?php echo $menu->menu_name ?></b>?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary pull-left" data-dismiss="modal"><i class="fa fa-close"></i> Batal</button>
-                <a href="<?php echo base_url('admin/menu/delete/' . $menu->id) ?>" class="btn btn-danger pull-right"><i class="fa fa-close"></i> Ya, Hapus Artikel</a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-close"></i> Batal</button>
+                <a href="<?php echo base_url('admin/menu/delete/' . $menu->id) ?>" class="btn btn-danger ml-3 text-white"><i class="fa fa-close"></i> Ya, Hapus Data</a>
             </div>
         </div>
         <!-- /.modal-content -->

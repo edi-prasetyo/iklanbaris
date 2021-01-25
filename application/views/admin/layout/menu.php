@@ -16,7 +16,17 @@ $meta           = $this->meta_model->get_meta();
       <ul class="navbar-nav">
         <li class="nav-item active"> <a class="nav-link" href="<?php echo base_url('admin/dashboard'); ?>">Dashboard </a> </li>
         <li class="nav-item active"> <a class="nav-link" href="<?php echo base_url('admin/iklan'); ?>">Iklan </a> </li>
-        <li class="nav-item active"> <a class="nav-link" href="<?php echo base_url('admin/transaction'); ?>">Transaksi </a> </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Transaksi
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="<?php echo base_url('admin/transaction'); ?>"> Data Transaksi</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/bank'); ?>"> Data Bank</a>
+          </div>
+        </li>
+
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Data Master
@@ -25,11 +35,12 @@ $meta           = $this->meta_model->get_meta();
             <a class="dropdown-item" href="<?php echo base_url('admin/category'); ?>"> Kategori</a>
             <a class="dropdown-item" href="<?php echo base_url('admin/province'); ?>"> Provinsi</a>
             <a class="dropdown-item" href="<?php echo base_url('admin/report'); ?>"> Report</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/menu'); ?>"> Menu</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="<?php echo base_url('admin/berita'); ?>"> Blog</a>
             <a class="dropdown-item" href="<?php echo base_url('admin/page'); ?>"> Halaman</a>
             <a class="dropdown-item" href="<?php echo base_url('admin/faq'); ?>"> FAQ</a>
-            <a class="dropdown-item" href="<?php echo base_url('admin/rules'); ?>"> Peraturan</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/Regularity'); ?>"> Peraturan</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -55,7 +66,7 @@ $meta           = $this->meta_model->get_meta();
             <a class="dropdown-item" href="<?php echo base_url('admin/meta/logo'); ?>"><i class="ti-lock"></i> Logo</a>
             <a class="dropdown-item" href="<?php echo base_url('admin/meta/favicon'); ?>"><i class="ti-lock"></i> Favicon</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>"><i class="ti-power-off"></i>Pengaturan Iklan</a>
+            <a class="dropdown-item" href="<?php echo base_url('admin/settings'); ?>"><i class="ti-power-off"></i>Pengaturan Iklan</a>
           </div>
         </li>
       </ul>
@@ -66,12 +77,18 @@ $meta           = $this->meta_model->get_meta();
             <i class="ti-user"></i> <?php echo $user->user_name; ?>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="<?php echo base_url('admin/myaccount') ?>"><i class="ti-user"></i> Akun Saya</a>
-            <a class="dropdown-item" href="<?php echo base_url('admin/myaccount/ubah_password'); ?>"><i class="ti-lock"></i> Ubah Password</a>
+            <a class="dropdown-item" href="<?php echo base_url('myaccount') ?>"><i class="ti-user"></i> Akun Saya</a>
+            <a class="dropdown-item" href="<?php echo base_url('myaccount/iklan') ?>"><i class="ri-shopping-bag-line"></i> Iklan Saya</a>
+            <a class="dropdown-item" href="<?php echo base_url('myaccount/package') ?>"><i class="ri-vip-crown-line"></i> Paket Premium</a>
+            <a class="dropdown-item" href="<?php echo base_url('myaccount/transaction') ?>"><i class="ri-file-list-3-line"></i> Riwayat Transaksi</a>
             <div class="dropdown-divider"></div>
+            <?php if ($user->role_id == 1) : ?>
+              <a class="dropdown-item" href="<?php echo base_url('admin/dashboard'); ?>">Panel Admin</a>
+            <?php endif; ?>
             <a class="dropdown-item" href="<?php echo base_url('auth/logout'); ?>"><i class="ti-power-off"></i> Logout</a>
           </div>
         </li>
+
       </ul>
     </div>
   </div>

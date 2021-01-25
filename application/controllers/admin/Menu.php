@@ -30,19 +30,27 @@ class Menu extends CI_Controller
     public function create()
     {
         $this->form_validation->set_rules(
-            'nama_menu_ind',
-            'Nama Menu Indonesia',
+            'menu_name',
+            'Nama Menu',
             'required',
             [
-                'required'      => 'Nama Menu Indonesia Email harus di isi',
+                'required'      => 'Nama Menu harus di isi',
             ]
         );
         $this->form_validation->set_rules(
-            'url',
-            'Url',
+            'menu_url',
+            'Menu Url',
             'required',
             [
-                'required'      => 'Url Harus di isi',
+                'required'      => 'Menu Url Harus di isi',
+            ]
+        );
+        $this->form_validation->set_rules(
+            'menu_location',
+            'Menu Lokasi',
+            'required',
+            [
+                'required'      => 'Menu Lokasi Harus di isi',
             ]
         );
         if ($this->form_validation->run() == false) {
@@ -54,10 +62,11 @@ class Menu extends CI_Controller
         } else {
 
             $data = [
-                'nama_menu_ind' => $this->input->post('nama_menu_ind'),
-                'url'           => $this->input->post('url'),
-                'urutan'        => $this->input->post('urutan'),
-                'date_created'  => time()
+                'user_id'               => $this->session->userdata('id'),
+                'menu_name'             => $this->input->post('menu_name'),
+                'menu_url'              => $this->input->post('menu_url'),
+                'menu_location'         => $this->input->post('menu_location'),
+                'date_created'          => time()
             ];
             $this->menu_model->create($data);
             $this->session->set_flashdata('message', 'Data telah ditambahkan');
@@ -68,28 +77,29 @@ class Menu extends CI_Controller
     {
         $menu = $this->menu_model->detail_menu($id);
         $this->form_validation->set_rules(
-            'nama_menu_ind',
-            'Nama Menu Indonesia',
+            'menu_name',
+            'Nama Menu',
             'required',
             [
-                'required'      => 'Nama Menu Indonesia Email harus di isi',
+                'required'      => 'Nama Menu harus di isi',
             ]
         );
 
         if ($this->form_validation->run() == false) {
             $data = [
-                'title'         => "Create menu",
+                'title'         => "Update menu",
                 'menu'          => $menu,
                 'content'       => 'admin/menu/update_menu'
             ];
             $this->load->view('admin/layout/wrapp', $data, FALSE);
         } else {
             $data = [
-                'id'            => $id,
-                'nama_menu_ind' => $this->input->post('nama_menu_ind'),
-                'url'           => $this->input->post('url'),
-                'urutan'        => $this->input->post('urutan'),
-                'date_updated'  => time()
+                'id'                    => $id,
+                'user_id'               => $this->session->userdata('id'),
+                'menu_name'             => $this->input->post('menu_name'),
+                'menu_url'              => $this->input->post('menu_url'),
+                'menu_location'         => $this->input->post('menu_location'),
+                'date_updated'          => time()
             ];
             $this->menu_model->update($data);
             $this->session->set_flashdata('message', 'Data telah di ubah');

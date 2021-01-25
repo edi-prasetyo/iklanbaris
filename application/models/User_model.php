@@ -30,10 +30,9 @@ class User_model extends CI_Model
 
     public function user_detail($id)
     {
-        $this->db->select('user.*, company.company_name, user_role.role');
+        $this->db->select('user.*, user_role.role');
         $this->db->from('user');
         // Join
-        $this->db->join('company', 'company.id = user.company_id', 'LEFT');
         $this->db->join('user_role', 'user_role.id = user.role_id', 'LEFT');
         // End Join
         $this->db->where(array(
@@ -44,10 +43,9 @@ class User_model extends CI_Model
     }
     public function user_premium_detail($user_id)
     {
-        $this->db->select('user.*, company.company_name, user_role.role');
+        $this->db->select('user.*, user_role.role');
         $this->db->from('user');
         // Join
-        $this->db->join('company', 'company.id = user.company_id', 'LEFT');
         $this->db->join('user_role', 'user_role.id = user.role_id', 'LEFT');
         // End Join
         $this->db->where(array(

@@ -131,10 +131,10 @@ class Auth extends CI_Controller
 
 		if ($this->form_validation->run() == false) {
 			$data = [
-				'title'					=> 'Register Donatur',
-				'deskripsi'     => 'Halaman Pendaftaran Member  Graha studio',
-				'keywords'      => 'Graha Studio, Daftar Member',
-				'content'       => 'front/auth/register'
+				'title'					=> 'Register',
+				'deskripsi'     		=> 'Register',
+				'keywords'      		=> 'Register',
+				'content'       		=> 'front/auth/register'
 			];
 			$this->load->view('front/layout/wrapp', $data, FALSE);
 		} else {

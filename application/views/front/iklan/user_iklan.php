@@ -46,7 +46,7 @@
                             <div class="col-lg-4">
                                 <!-- <button id="change-phrase" type="button">Change Phrase</button> -->
                                 <button id="change-phrase" class="btn btn-warning mb-3 btn-block"> <i class="ri-phone-line"></i> Tampilkan Nomor</button>
-                                <span class="btn btn-success btn-block"> <i class="ri-whatsapp-line"></i> Chat Whatsapp</span>
+                                <a href="https://api.whatsapp.com/send?phone=<?php echo $user_list->user_phone; ?>" class="btn btn-success px-3 text-white my-2 btn-block"> <i class="ri-whatsapp-line"></i> Chat Whatsapp </a>
                             </div>
                         </div>
                     </div>
@@ -134,6 +134,8 @@
         content = document.getElementById('change-phrase');
 
     button.onclick = function() {
-        content.innerHTML = '<i class="ri-phone-line"></i> <?php echo $user_list->user_phone; ?>';
+        content.innerHTML = '<i class="ri-phone-line"></i> <?php
+                                                            $hp = substr_replace($user_list->user_phone, '0', 0, 2);
+                                                            echo $hp; ?>';
     };
 </script>

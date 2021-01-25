@@ -17,36 +17,7 @@ class Faq_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    public function get_faq_blog()
-    {
-        $this->db->select('*');
-        $this->db->from('faq');
-        $this->db->where('faq_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function get_faq_iklan($faq_id)
-    {
-        $this->db->select('*');
-        $this->db->from('faq');
-        $this->db->where(array(
-            'id'            => $faq_id
-        ));
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->row();
-    }
 
-    public function get_faq_sidebar()
-    {
-        $this->db->select('*');
-        $this->db->from('faq');
-        $this->db->where('faq_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
     public function detail_faq($id)
     {
         $this->db->select('*');

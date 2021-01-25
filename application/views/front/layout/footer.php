@@ -1,11 +1,13 @@
 <?php
 $meta      = $this->meta_model->get_meta();
-$page      = $this->page_model->get_page();
+$footer_1      = $this->menu_model->get_footer_1();
+$footer_2      = $this->menu_model->get_footer_2();
+$footer_3      = $this->menu_model->get_footer_3();
 
 ?>
 
 
-<div class="pt-4 pt-md-5 border-top bg-white mt-auto">
+<div class="py-3 border-top bg-white mt-auto">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -17,16 +19,16 @@ $page      = $this->page_model->get_page();
             <div class="col-md-3">
                 <h5><?php echo $meta->title; ?></h5>
                 <ul class="list-unstyled">
-                    <?php foreach ($page as $page) : ?>
-                        <li class="my-2"> <a class="text-muted" href="<?php echo base_url('page/detail/' . $page->page_slug); ?>"><?php echo $page->page_title; ?></a></li>
+                    <?php foreach ($footer_1 as $footer_1) : ?>
+                        <li class="my-2"> <a class="text-muted" href="<?php echo $footer_1->menu_url; ?>"><?php echo $footer_1->menu_name; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
             <div class="col-md-6 footer">
                 <h5 class="text-muted">Kategori</h5>
                 <ul class="list-unstyled">
-                    <?php foreach ($category as $category) : ?>
-                        <li> <a class="text-muted" href="#"><?php echo $category->category_name; ?></a></li>
+                    <?php foreach ($footer_2 as $footer_2) : ?>
+                        <li> <a class="text-muted" href="<?php echo $footer_1->menu_url; ?>"><?php echo $footer_2->menu_name; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -44,9 +46,9 @@ $page      = $this->page_model->get_page();
             <!-- End Col -->
             <div class="col-md-6">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Kebijakan Privasi</a></li>
-                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Syarat dan Ketentuan</a></li>
-                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Tips Aman Jual Beli</a></li>
+                    <?php foreach ($footer_3 as $footer_3) : ?>
+                        <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="<?php echo $footer_3->menu_url; ?>"><?php echo $footer_3->menu_name; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <!-- End col -->
@@ -120,48 +122,9 @@ $page      = $this->page_model->get_page();
 
 
 
-<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script> -->
 
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url(); ?>assets/template/front/vendor/slick/slick.min.js"></script>
 
-<script>
-    $('.responsive').slick({
-        dots: true,
-        infinite: false,
-        speed: 300,
-        slidesToShow: 6,
-        slidesToScroll: 4,
-        responsive: [{
-                breakpoint: 1024,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 3,
-                    infinite: true,
-                    dots: true
-                }
-            },
-            {
-                breakpoint: 600,
-                settings: {
-                    slidesToShow: 4,
-                    slidesToScroll: 2
-                }
-            },
-            {
-                breakpoint: 480,
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1
-                }
-            }
-            // You can unslick at a given breakpoint now by adding:
-            // settings: "unslick"
-            // instead of a settings object
-        ]
-    });
-</script>
 
 
 <link href="<?php echo base_url(); ?>assets/template/front/vendor/select2/css/select2.css" rel="stylesheet" />

@@ -36,6 +36,16 @@
 
                         </div>
                         <div class="col-3">
+                            Username
+                        </div>
+                        <div class="col-9">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="username" placeholder="Nama" value="<?php echo $user->username; ?>" readonly>
+                                <?php echo form_error('username', '<small class="text-danger pl-3">', '</small>'); ?>
+                            </div>
+
+                        </div>
+                        <div class="col-3">
                             Email
                         </div>
                         <div class="col-9">
@@ -60,14 +70,6 @@
                             <h3>Contact Info</h3>
                             <hr>
                         </div>
-
-
-
-
-
-
-
-
 
                         <div class="col-3">
                             Handphone

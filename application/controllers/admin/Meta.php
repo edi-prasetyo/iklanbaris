@@ -97,20 +97,17 @@ class Meta extends CI_Controller
                 //End Validasi
 
                 $data = [
-                    'title'             => 'Update Logo',
-                    'meta'              => $meta,
-                    'error'             => $this->upload->display_errors(),
-                    'content'           => 'admin/meta/upload_logo'
+                    'title'                 => 'Update Logo',
+                    'meta'                  => $meta,
+                    'error'                 => $this->upload->display_errors(),
+                    'content'               => 'admin/meta/upload_logo'
                 ];
                 $this->load->view('admin/layout/wrapp', $data, FALSE);
 
                 //Masuk Database
             } else {
-                //Proses Manipulasi Gambar
+                //Proses Upload Gambar
                 $upload_data    = array('uploads'  => $this->upload->data());
-                //Gambar Asli disimpan di folder assets/upload/image
-                //lalu gambara Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
-
                 $config['image_library']    = 'gd2';
                 $config['source_image']     = './assets/img/logo/' . $upload_data['uploads']['file_name'];
                 //Gambar Versi Kecil dipindahkan
@@ -132,9 +129,9 @@ class Meta extends CI_Controller
                 }
 
                 $data  = [
-                    'id'  => $meta->id,
-                    'user_id'         => $this->session->userdata('id'),
-                    'logo'            => $upload_data['uploads']['file_name']
+                    'id'                => $meta->id,
+                    'user_id'           => $this->session->userdata('id'),
+                    'logo'              => $upload_data['uploads']['file_name']
                 ];
                 $this->meta_model->update($data);
                 $this->session->set_flashdata('message', 'Data telah diubah');
@@ -183,9 +180,6 @@ class Meta extends CI_Controller
             } else {
                 //Proses Manipulasi Gambar
                 $upload_data    = array('uploads'  => $this->upload->data());
-                //Gambar Asli disimpan di folder assets/upload/image
-                //lalu gambara Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
-
                 $config['image_library']    = 'gd2';
                 $config['source_image']     = './assets/img/logo/' . $upload_data['uploads']['file_name'];
                 //Gambar Versi Kecil dipindahkan
@@ -199,7 +193,6 @@ class Meta extends CI_Controller
                 $this->load->library('image_lib', $config);
 
                 $this->image_lib->resize();
-
                 // Hapus Gambar Lama Jika Ada upload gambar baru
                 if ($meta->favicon != "") {
                     unlink('./assets/img/logo/' . $meta->favicon);
@@ -207,9 +200,9 @@ class Meta extends CI_Controller
                 }
 
                 $data  = [
-                    'id'  => $meta->id,
-                    'user_id'         => $this->session->userdata('id'),
-                    'favicon'            => $upload_data['uploads']['file_name']
+                    'id'                    => $meta->id,
+                    'user_id'               => $this->session->userdata('id'),
+                    'favicon'               => $upload_data['uploads']['file_name']
                 ];
                 $this->meta_model->update($data);
                 $this->session->set_flashdata('message', 'Data telah diubah');

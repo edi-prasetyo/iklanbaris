@@ -55,7 +55,7 @@ class Page extends CI_Controller
         $data = [
             'title'             => 'Halaman',
             'page'              => $page,
-            'pagination'    => $this->pagination->create_links(),
+            'pagination'        => $this->pagination->create_links(),
             'content'           => 'admin/page/index_page'
         ];
         $this->load->view('admin/layout/wrapp', $data, FALSE);
@@ -91,10 +91,10 @@ class Page extends CI_Controller
             $slugcode = random_string('numeric', 5);
             $page_slug  = url_title($this->input->post('page_title'), 'dash', TRUE);
             $data  = [
-                'user_id'       => $this->session->userdata('id'),
-                'page_slug'     =>  $page_slug . '-' . $slugcode,
-                'page_title'     => $this->input->post('page_title'),
-                'page_desc'     => $this->input->post('page_desc'),
+                'user_id'           => $this->session->userdata('id'),
+                'page_slug'         =>  $page_slug . '-' . $slugcode,
+                'page_title'        => $this->input->post('page_title'),
+                'page_desc'         => $this->input->post('page_desc'),
                 'date_created'      => time()
             ];
             $this->page_model->create($data);
@@ -133,9 +133,9 @@ class Page extends CI_Controller
 
             $data  = [
                 'id'                => $id,
-                'user_id'       => $this->session->userdata('id'),
-                'page_title'     => $this->input->post('page_title'),
-                'page_desc'     => $this->input->post('page_desc'),
+                'user_id'           => $this->session->userdata('id'),
+                'page_title'        => $this->input->post('page_title'),
+                'page_desc'         => $this->input->post('page_desc'),
                 'date_updated'      => time()
             ];
             $this->page_model->update($data);
@@ -144,7 +144,7 @@ class Page extends CI_Controller
         }
         //End Masuk Database
     }
-    //delete Category
+    //delete
     public function delete($id)
     {
         //Proteksi delete

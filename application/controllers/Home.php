@@ -20,7 +20,7 @@ class Home extends CI_Controller
     $user = $this->user_model->user_detail($id);
     $meta = $this->meta_model->get_meta();
     $iklan = $this->iklan_model->get_iklan_home();
-    $category = $this->category_model->get_category_iklan();
+    $category = $this->category_model->get_category_home();
 
 
     // Search text

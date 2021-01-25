@@ -171,7 +171,7 @@
                             <div class="form-group row">
                                 <label class="col-3">Kata kunci</label>
                                 <div class="col-9">
-                                    <input type="text" name="iklan_keywords" class="form-control form-control-lg" placeholder="Mobil Di Jual, Jual kamera etc .." value="<?php echo $iklan->iklan_title; ?>">
+                                    <input type="text" name="iklan_keywords" class="form-control form-control-lg" placeholder="Mobil Di Jual, Jual kamera etc .." value="<?php echo $iklan->iklan_keywords; ?>">
                                 </div>
                             </div>
 
@@ -194,17 +194,18 @@
 
 
                 <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <i class="ri-image-edit-line"></i> Peraturan
-                        </div>
-                        <div class="card-body">
-
-                            Peraturan Iklan
 
 
-                        </div>
-                    </div>
+                    <ul class="list-group">
+                        <li class="list-group-item bg-danger text-white"><i class="ri-image-edit-line"></i> Peraturan</li>
+                        <?php foreach ($regularity as $regularity) : ?>
+                            <li class="list-group-item list-group-item-danger"><?php echo $regularity->regularity_name; ?> </li>
+                        <?php endforeach; ?>
+
+                    </ul>
+
+
+
                 </div>
             </div>
         </div>

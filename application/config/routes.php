@@ -56,3 +56,5 @@ $route['sitemap\.xml'] = 'sitemap';
 
 // Route Category
 $route['category/(:any)']             = 'category/detail/$1';
+
+$route['page/(:any)']             = 'page/detail/$1';

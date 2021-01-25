@@ -11,50 +11,27 @@ class Report_model extends CI_Model
     }
     public function get_allreport($limit, $start)
     {
-        $this->db->select('report.*, iklan.iklan_title, iklan.id_iklan');
+        $this->db->select('report.*, user.user_name, iklan.iklan_title, iklan.id_iklan');
         $this->db->from('report');
         // join
         $this->db->join('iklan', 'iklan.id = report.iklan_id', 'LEFT');
+        $this->db->join('user', 'user.id = report.user_id', 'LEFT');
         // End Join
         $this->db->order_by('id', 'DESC');
         $this->db->limit($limit, $start);
         $query = $this->db->get();
         return $query->result();
     }
-    public function get_report_blog()
-    {
-        $this->db->select('*');
-        $this->db->from('report');
-        $this->db->where('report_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
-    public function get_report_iklan()
-    {
-        $this->db->select('*');
-        $this->db->from('report');
-        $this->db->where('report_type', 'Iklan');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
 
-    public function get_report_sidebar()
-    {
-        $this->db->select('*');
-        $this->db->from('report');
-        $this->db->where('report_type', 'Blog');
-        $this->db->order_by('id', 'DESC');
-        $query = $this->db->get();
-        return $query->result();
-    }
     public function detail_report($id)
     {
-        $this->db->select('*');
+        $this->db->select('report.*, user.user_name, iklan.iklan_title, iklan.id_iklan');
         $this->db->from('report');
-        $this->db->where('id', $id);
-        $this->db->order_by('id');
+        // join
+        $this->db->join('iklan', 'iklan.id = report.iklan_id', 'LEFT');
+        $this->db->join('user', 'user.id = report.user_id', 'LEFT');
+        // End Join
+        $this->db->where('report.id', $id);
         $query = $this->db->get();
         return $query->row();
     }

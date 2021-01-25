@@ -17,12 +17,12 @@ class Regularity extends CI_Controller
             redirect('admin/dashboard');
         }
     }
-    //Index FAQ
+    //Index
     public function index()
     {
         $config['base_url']       = base_url('admin/regularity/index/');
         $config['total_rows']     = count($this->regularity_model->total_row());
-        $config['per_regularity']       = 10;
+        $config['per_page']       = 10;
         $config['uri_segment']    = 4;
 
         //Membuat Style pagination untuk BootStrap v4
@@ -32,22 +32,22 @@ class Regularity extends CI_Controller
         $config['prev_link']        = 'Prev';
         $config['full_tag_open']    = '<div class="pagging text-center"><nav><ul class="pagination justify-content-center">';
         $config['full_tag_close']   = '</ul></nav></div>';
-        $config['num_tag_open']     = '<li class="regularity-item"><span class="regularity-link">';
+        $config['num_tag_open']     = '<li class="page-item"><span class="page-link">';
         $config['num_tag_close']    = '</span></li>';
-        $config['cur_tag_open']     = '<li class="regularity-item active"><span class="regularity-link">';
+        $config['cur_tag_open']     = '<li class="page-item active"><span class="page-link">';
         $config['cur_tag_close']    = '<span class="sr-only">(current)</span></span></li>';
-        $config['next_tag_open']    = '<li class="regularity-item"><span class="regularity-link">';
+        $config['next_tag_open']    = '<li class="page-item"><span class="page-link">';
         $config['next_tagl_close']  = '<span aria-hidden="true">&raquo;</span></span></li>';
-        $config['prev_tag_open']    = '<li class="regularity-item"><span class="regularity-link">';
+        $config['prev_tag_open']    = '<li class="page-item"><span class="page-link">';
         $config['prev_tagl_close']  = '</span>Next</li>';
-        $config['first_tag_open']   = '<li class="regularity-item"><span class="regularity-link">';
+        $config['first_tag_open']   = '<li class="page-item"><span class="page-link">';
         $config['first_tagl_close'] = '</span></li>';
-        $config['last_tag_open']    = '<li class="regularity-item"><span class="regularity-link">';
+        $config['last_tag_open']    = '<li class="page-item"><span class="page-link">';
         $config['last_tagl_close']  = '</span></li>';
 
 
         //Limit dan Start
-        $limit                    = $config['per_regularity'];
+        $limit                    = $config['per_page'];
         $start                    = ($this->uri->segment(4)) ? ($this->uri->segment(4)) : 0;
         //End Limit Start
         $this->pagination->initialize($config);
@@ -93,10 +93,10 @@ class Regularity extends CI_Controller
         } else {
 
             $data  = [
-                'user_id'           => $this->session->userdata('id'),
-                'regularity_name'        => $this->input->post('regularity_name'),
-                'regularity_type'      => $this->input->post('regularity_type'),
-                'date_created'      => time()
+                'user_id'                   => $this->session->userdata('id'),
+                'regularity_name'           => $this->input->post('regularity_name'),
+                'regularity_type'           => $this->input->post('regularity_type'),
+                'date_created'              => time()
             ];
             $this->regularity_model->create($data);
             $this->session->set_flashdata('message', 'Data telah ditambahkan');
@@ -124,20 +124,20 @@ class Regularity extends CI_Controller
             //End Validasi
 
             $data = [
-                'title'             => 'Edit Peraturan',
-                'regularity'              => $regularity,
-                'content'           => 'admin/regularity/update_regularity'
+                'title'                     => 'Edit Peraturan',
+                'regularity'                => $regularity,
+                'content'                   => 'admin/regularity/update_regularity'
             ];
             $this->load->view('admin/layout/wrapp', $data, FALSE);
             //Masuk Database
         } else {
 
             $data  = [
-                'id'                => $id,
-                'user_id'           => $this->session->userdata('id'),
-                'regularity_name'        => $this->input->post('regularity_name'),
-                'regularity_type'      => $this->input->post('regularity_type'),
-                'date_updated'      => time()
+                'id'                        => $id,
+                'user_id'                   => $this->session->userdata('id'),
+                'regularity_name'           => $this->input->post('regularity_name'),
+                'regularity_type'           => $this->input->post('regularity_type'),
+                'date_updated'              => time()
             ];
             $this->regularity_model->update($data);
             $this->session->set_flashdata('message', 'Data telah di Update');
@@ -145,7 +145,7 @@ class Regularity extends CI_Controller
         }
         //End Masuk Database
     }
-    //delete Category
+    //delete
     public function delete($id)
     {
         //Proteksi delete

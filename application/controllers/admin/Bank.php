@@ -19,17 +19,10 @@ class Bank extends CI_Controller
     //listing data bank
     public function index()
     {
-        $config['base_url']       = base_url('admin/bank/index/');
-        $config['total_rows']     = count($this->bank_model->total_row());
-        $config['per_page']       = 5;
-        $config['uri_segment']    = 4;
-        // $config['use_page_numbers'] = TRUE;
-        // $config['page_query_string'] = true;
-        // $config['query_string_segment'] = 'page';
-
-
-
-
+        $config['base_url']         = base_url('admin/bank/index/');
+        $config['total_rows']       = count($this->bank_model->total_row());
+        $config['per_page']         = 5;
+        $config['uri_segment']      = 4;
         //Membuat Style pagination untuk BootStrap v4
         $config['first_link']       = 'First';
         $config['last_link']        = 'Last';
@@ -57,14 +50,10 @@ class Bank extends CI_Controller
         //End Limit Start
         $this->pagination->initialize($config);
 
-
-
-
-
         $bank = $this->bank_model->get_bank($limit, $start);
         $data = [
             'title'         => 'Data Bank',
-            'bank'        => $bank,
+            'bank'          => $bank,
             'pagination'    => $this->pagination->create_links(),
             'content'       => 'admin/bank/index_bank'
         ];
@@ -99,7 +88,6 @@ class Bank extends CI_Controller
             $config['max_height']           = 5000; //tinggi (pixel)
             $this->load->library('upload', $config);
             if (!$this->upload->do_upload('bank_logo')) {
-
                 //End Validasi
                 $data = [
                     'title'        => 'Tambah Bank',
@@ -107,20 +95,13 @@ class Bank extends CI_Controller
                     'content'      => 'admin/bank/create_bank'
                 ];
                 $this->load->view('admin/layout/wrapp', $data, FALSE);
-
                 //Masuk Database
-
             } else {
 
-                //Proses Manipulasi Gambar
+                //Proses Upload Gambar
                 $upload_data    = array('uploads'  => $this->upload->data());
-                //Gambar Asli disimpan di folder assets/upload/image
-                //lalu gambara Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
-
                 $config['image_library']    = 'gd2';
                 $config['source_image']     = './assets/img/bank/' . $upload_data['uploads']['file_name'];
-                //Gambar Versi Kecil dipindahkan
-                // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                 $config['create_thumb']     = TRUE;
                 $config['maintain_ratio']   = TRUE;
                 $config['width']            = 500;
@@ -144,7 +125,6 @@ class Bank extends CI_Controller
                 redirect(base_url('admin/bank'), 'refresh');
             }
         }
-        //End Masuk Database
         $data = [
             'title'             => 'Tambah Bank',
             'content'           => 'admin/bank/create_bank'
@@ -157,17 +137,14 @@ class Bank extends CI_Controller
     public function Update($id)
     {
         $bank = $this->bank_model->bank_detail($id);
-
         //Validasi
         $valid = $this->form_validation;
-
         $valid->set_rules(
             'bank_name',
             'Nama Bank',
             'required',
             ['required'      => '%s harus diisi']
         );
-
 
         if ($valid->run()) {
             //Kalau nggak Ganti gambar
@@ -180,7 +157,6 @@ class Bank extends CI_Controller
                 $config['max_height']           = 5000; //tinggi (pixel)
                 $this->load->library('upload', $config);
                 if (!$this->upload->do_upload('bank_logo')) {
-
                     //End Validasi
                     $data = [
                         'title'             => 'Edit Bank',
@@ -189,37 +165,24 @@ class Bank extends CI_Controller
                         'content'           => 'admin/bank/update_bank'
                     ];
                     $this->load->view('admin/layout/wrapp', $data, FALSE);
-
                     //Masuk Database
-
                 } else {
-
-                    //Proses Manipulasi Gambar
+                    //Proses Upload Gambar
                     $upload_data    = array('uploads'  => $this->upload->data());
-                    //Gambar Asli disimpan di folder assets/upload/image
-                    //lalu gambar Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
-
                     $config['image_library']    = 'gd2';
                     $config['source_image']     = './assets/img/bank/' . $upload_data['uploads']['file_name'];
-                    //Gambar Versi Kecil dipindahkan
-                    // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                     $config['create_thumb']     = TRUE;
                     $config['maintain_ratio']   = TRUE;
                     $config['width']            = 500;
                     $config['height']           = 500;
                     $config['thumb_marker']     = '';
-
                     $this->load->library('image_lib', $config);
-
                     $this->image_lib->resize();
-
                     // Hapus Gambar Lama Jika Ada upload gambar baru
                     if ($bank->bank_logo != "") {
                         unlink('./assets/img/bank/' . $bank->bank_logo);
-                        // unlink('./assets/img/artikel/thumbs/' . $bank->bank_logo);
                     }
                     //End Hapus Gambar
-
                     $data  = [
                         'id'                => $id,
                         'user_id'           => $this->session->userdata('id'),
@@ -239,7 +202,7 @@ class Bank extends CI_Controller
                 // Hapus Gambar Lama Jika ada upload gambar baru
                 if ($bank->bank_logo != "")
                     $data  = [
-                        'id'         => $id,
+                        'id'                => $id,
                         'user_id'           => $this->session->userdata('id'),
                         'bank_name'         => $this->input->post('bank_name'),
                         'bank_number'       => $this->input->post('bank_number'),
@@ -262,18 +225,15 @@ class Bank extends CI_Controller
         $this->load->view('admin/layout/wrapp', $data, FALSE);
     }
 
-    //delete
+    //delete Bank
     public function delete($id)
     {
         //Proteksi delete
         is_login();
-
         $bank = $this->bank_model->bank_detail($id);
         //Hapus gambar
-
         if ($bank->bank_logo != "") {
             unlink('./assets/img/bank/' . $bank->bank_logo);
-            // unlink('./assets/img/artikel/thumbs/' . $bank->bank_logo);
         }
         //End Hapus Gambar
         $data = ['id'   => $bank->id];

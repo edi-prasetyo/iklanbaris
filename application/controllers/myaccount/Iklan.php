@@ -12,6 +12,7 @@ class Iklan extends CI_Controller
         $this->load->model('category_model');
         $this->load->model('province_model');
         $this->load->model('regularity_model');
+        $this->load->model('settings_model');
     }
 
     // Listing Iklan iklan
@@ -25,7 +26,7 @@ class Iklan extends CI_Controller
 
         $config['base_url']       = base_url('myaccount/iklan/index/');
         $config['total_rows']     = count($this->iklan_model->total_row_user());
-        $config['per_page']       = 3;
+        $config['per_page']       = 10;
         $config['uri_segment']    = 4;
 
         //Membuat Style pagination untuk BootStrap v4
@@ -58,26 +59,27 @@ class Iklan extends CI_Controller
 
         // End Listing iklan dengan paginasi
         $data = array(
-            'title'       => 'Iklan Saya',
-            'deskripsi'   => 'iklan - ' . $meta->description,
-            'keywords'    => 'iklan - ' . $meta->keywords,
-            'user'        => $user,
-            'meta'        => $meta,
-            'iklan'    => $iklan,
+            'title'         => 'Iklan Saya',
+            'deskripsi'     => 'iklan - ' . $meta->description,
+            'keywords'      => 'iklan - ' . $meta->keywords,
+            'user'          => $user,
+            'meta'          => $meta,
+            'iklan'         => $iklan,
             'pagination'    => $this->pagination->create_links(),
-            'content'     => 'myaccount/iklan/index_iklan'
+            'content'       => 'myaccount/iklan/index_iklan'
         );
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);
     }
 
-    // Create Iklan iklan
+    // Create
     public function create()
     {
+        $category           = $this->category_model->get_category_iklan();
+        $province           = $this->province_model->get_province();
+        $regularity         = $this->regularity_model->get_regularity_seller();
+        $moderasi_status    = $this->settings_model->get_settings();
+        $moderasi           = $moderasi_status->moderation;
 
-        // Get type
-        $category = $this->category_model->get_category_iklan();
-        $province = $this->province_model->get_province();
-        $regularity = $this->regularity_model->get_regularity_seller();
         // Validasi
         $this->form_validation->set_rules(
             'iklan_title',
@@ -97,24 +99,14 @@ class Iklan extends CI_Controller
             'required',
             ['required'      => 'Anda harus memilih Kategori',]
         );
-        $this->form_validation->set_rules(
-            'iklan_type',
-            'Model',
-            'required',
-            ['required'      => 'Model harus di isi',]
-        );
+
         $this->form_validation->set_rules(
             'iklan_price',
             'Harga Barang',
             'required',
             ['required'      => 'Harga Barang harus di isi',]
         );
-        $this->form_validation->set_rules(
-            'iklan_merek',
-            'Merek Barang',
-            'required',
-            ['required'      => 'Merek Barang harus di isi',]
-        );
+
         $this->form_validation->set_rules(
             'iklan_desc',
             'Merek Barang',
@@ -132,26 +124,22 @@ class Iklan extends CI_Controller
             if (!$this->upload->do_upload('iklan_image')) {
 
                 $data = [
-                    'title'        => 'Tambah iklan',
-                    'deskripsi'     => 'deskripsi',
-                    'keywords'      => 'keywords',
+                    'title'             => 'Tambah iklan',
+                    'deskripsi'         => 'deskripsi',
+                    'keywords'          => 'keywords',
                     'category'          => $category,
-                    'province'      => $province,
-                    'regularity'    => $regularity,
-                    'content'       => 'myaccount/iklan/create_iklan'
+                    'province'          => $province,
+                    'regularity'        => $regularity,
+                    'content'           => 'myaccount/iklan/create_iklan'
                 ];
                 $this->load->view('myaccount/layout/wrapp', $data, FALSE);
             } else {
 
-                //Proses Manipulasi Gambar
+                //Proses Upload Gambar
                 $upload_data    = array('uploads'  => $this->upload->data());
-                //Gambar Asli disimpan di folder assets/upload/image
-                //lalu gambara Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
 
                 $config['image_library']    = 'gd2';
                 $config['source_image']     = './assets/img/iklan/' . $upload_data['uploads']['file_name'];
-                //Gambar Versi Kecil dipindahkan
-                // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                 $config['create_thumb']     = TRUE;
                 $config['maintain_ratio']   = TRUE;
                 $config['width']            = 500;
@@ -165,6 +153,12 @@ class Iklan extends CI_Controller
                 $iklan_slug  = url_title($this->input->post('iklan_title'), 'dash', TRUE);
                 $id_iklan =  random_string('numeric', 7);
 
+                // Hapus Kata Tertentu
+                $string = $this->input->post('iklan_desc');
+                $patterns = ['/http:/', '/https:/', '/www./', '/.com/', '/.net/', '/.info/', '/.org/', '/.xyz/', '/.id/', '/.co.id/', '/.web.id/', '/.my.id/', '/obat/', '/0812/', '/0813/', '/0877/', '/0819/', '/0818/', '/021/', '/0859/', '/0878/', '/0817/', '/0818/', '/0811/', '/0821/', '/0822/', '/0823/', '/0852/', '/0853/', '/0851/', '/0898/', '/0899/', '/0895/', '/0896/', '/0897/', '/0814/', '/0815/', '/0816/', '/0855/', '/0856/', '/0857/', '/0858/', '/0889/', '/0881/', '/0882/', '/0883/', '/0886/', '/0887/', '/0888/', '/0884/', '/0885/', '/0832/', '/0833/', '/0838/', '/0831/', '/Obat Kuat/', '/Dewasa/', '/dewasa/', '/judi/', '/hubungi/', '/Hubungi/', '/HUBUNGI/', '/Website/', '/WEBSITE/', '/website/', '/situs/', '/Situs/', '/SITUS/'];
+                $replacements = ['***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***', '***'];
+
+
                 $data = [
                     'user_id'                   => $this->session->userdata('id'),
                     'province_id'               => $this->input->post('province_id'),
@@ -172,30 +166,25 @@ class Iklan extends CI_Controller
                     'category_id'               => $this->input->post('category_id'),
                     'iklan_slug'                => $slugcode . '-' . $iklan_slug,
                     'iklan_title'               => $this->input->post('iklan_title'),
-                    'iklan_status'              => 'Active',
-                    'iklan_merek'               => $this->input->post('iklan_merek'),
-                    'iklan_type'                => $this->input->post('iklan_type'),
-                    'iklan_kondisi'             => $this->input->post('iklan_kondisi'),
+                    'iklan_status'              => $moderasi,
                     'iklan_price'               => $this->input->post('iklan_price'),
-                    'iklan_negotiable'            => $this->input->post('iklan_negotiable'),
-                    'iklan_desc'                => $this->input->post('iklan_desc'),
-
-                    'iklan_image'                 => $upload_data['uploads']['file_name'],
-                    'iklan_keywords'         => $this->input->post('iklan_keywords'),
+                    'iklan_negotiable'          => $this->input->post('iklan_negotiable'),
+                    'iklan_desc'                => preg_replace($patterns, $replacements, $string),
+                    'iklan_image'               => $upload_data['uploads']['file_name'],
+                    'iklan_keywords'            => $this->input->post('iklan_keywords'),
                     'date_created'              => time()
                 ];
-                $insert_id = $this->iklan_model->create($data);
-                // $this->upload_images($insert_id);
+                $this->iklan_model->create($data);
                 $this->session->set_flashdata('message', 'Data Iklan telah ditambahkan');
                 redirect(base_url('myaccount/iklan'), 'refresh');
             }
         }
 
         $data = [
-            'title'        => 'Tambah Iklan',
+            'title'         => 'Tambah Iklan',
             'deskripsi'     => 'deskripsi',
             'keywords'      => 'keywords',
-            'category'          => $category,
+            'category'      => $category,
             'province'      => $province,
             'regularity'    => $regularity,
             'content'       => 'myaccount/iklan/create_iklan'
@@ -203,20 +192,18 @@ class Iklan extends CI_Controller
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);
     }
 
-    // Update Iklan
+    // Update
     public function update($id)
     {
-        $user_id = $this->session->userdata('id');
-        // $user = $this->user_model->user_detail($user_id);
-
-
-        $iklan = $this->iklan_model->iklan_detail($id);
-        $category = $this->category_model->get_category_iklan();
-        $province = $this->province_model->get_province();
-        $regularity = $this->regularity_model->get_regularity_seller();
-
+        $moderasi_status    = $this->settings_model->get_settings();
+        $moderasi           = $moderasi_status->moderation;
+        $user_id            = $this->session->userdata('id');
+        $iklan              = $this->iklan_model->iklan_detail($id);
+        $category           = $this->category_model->get_category_iklan();
+        $province           = $this->province_model->get_province();
+        $regularity         = $this->regularity_model->get_regularity_seller();
+        // Proteksi Iklan User
         if ($iklan->user_id == $user_id) {
-
             // Validasi
             $this->form_validation->set_rules(
                 'iklan_title',
@@ -241,64 +228,51 @@ class Iklan extends CI_Controller
 
                         //End Validasi
                         $data = [
-                            'title'        => 'Edit Iklan',
-                            'deskripsi'     => 'deskripsi',
-                            'keywords'      => 'keywords',
-                            'category'     => $category,
-                            'province'      => $province,
-                            'iklan'       => $iklan,
-                            'regularity'    => $regularity,
-                            'error_upload' => $this->upload->display_errors(),
-                            'content'          => 'myaccount/iklan/update_iklan'
+                            'title'             => 'Edit Iklan',
+                            'deskripsi'         => 'deskripsi',
+                            'keywords'          => 'keywords',
+                            'category'          => $category,
+                            'province'          => $province,
+                            'iklan'             => $iklan,
+                            'regularity'        => $regularity,
+                            'error_upload'      => $this->upload->display_errors(),
+                            'content'           => 'myaccount/iklan/update_iklan'
                         ];
                         $this->load->view('myaccount/layout/wrapp', $data, FALSE);
-
                         //Masuk Database
 
                     } else {
 
-                        //Proses Manipulasi Gambar
+                        //Proses Upload Gambar
                         $upload_data    = array('uploads'  => $this->upload->data());
-                        //Gambar Asli disimpan di folder assets/upload/image
-                        //lalu gambar Asli di copy untuk versi mini size ke folder assets/upload/image/thumbs
-
                         $config['image_library']    = 'gd2';
                         $config['source_image']     = './assets/img/iklan/' . $upload_data['uploads']['file_name'];
-                        //Gambar Versi Kecil dipindahkan
-                        // $config['new_image']        = './assets/img/artikel/thumbs/' . $upload_data['uploads']['file_name'];
                         $config['create_thumb']     = TRUE;
                         $config['maintain_ratio']   = TRUE;
                         $config['width']            = 500;
                         $config['height']           = 500;
                         $config['thumb_marker']     = '';
-
                         $this->load->library('image_lib', $config);
-
                         $this->image_lib->resize();
-
                         // Hapus Gambar Lama Jika Ada upload gambar baru
                         if ($iklan->iklan_image != "") {
                             unlink('./assets/img/iklan/' . $iklan->iklan_image);
-                            // unlink('./assets/img/artikel/thumbs/' . $iklan->iklan_gambar);
                         }
                         //End Hapus Gambar
 
                         $data  = [
-                            'id'                => $id,
-                            'user_id'           => $this->session->userdata('id'),
-                            'category_id'       => $this->input->post('category_id'),
+                            'id'                        => $id,
+                            'user_id'                   => $this->session->userdata('id'),
+                            'category_id'               => $this->input->post('category_id'),
                             'province_id'               => $this->input->post('province_id'),
-                            'iklan_title'            => $this->input->post('iklan_title'),
-                            'iklan_status'           => 'Active',
-                            'iklan_merek'            => $this->input->post('iklan_merek'),
-                            'iklan_type'            => $this->input->post('iklan_type'),
-                            'iklan_kondisi'            => $this->input->post('iklan_kondisi'),
-                            'iklan_price'            => $this->input->post('iklan_price'),
-                            'iklan_negotiable'            => $this->input->post('iklan_negotiable'),
-                            'iklan_desc'            => $this->input->post('iklan_desc'),
-                            'iklan_image'                 => $upload_data['uploads']['file_name'],
-                            'iklan_keywords'         => $this->input->post('iklan_keywords'),
-                            'date_updated'      => time()
+                            'iklan_title'               => $this->input->post('iklan_title'),
+                            'iklan_status'              => $moderasi,
+                            'iklan_price'               => $this->input->post('iklan_price'),
+                            'iklan_negotiable'          => $this->input->post('iklan_negotiable'),
+                            'iklan_desc'                => $this->input->post('iklan_desc'),
+                            'iklan_image'               => $upload_data['uploads']['file_name'],
+                            'iklan_keywords'            => $this->input->post('iklan_keywords'),
+                            'date_updated'              => time()
                         ];
                         $this->iklan_model->update($data);
                         $this->session->set_flashdata('message', 'Data telah di Update');
@@ -309,21 +283,18 @@ class Iklan extends CI_Controller
                     // Hapus Gambar Lama Jika ada upload gambar baru
                     if ($iklan->iklan_image != "")
                         $data  = [
-                            'id'                => $id,
-                            'user_id'           => $this->session->userdata('id'),
-                            'category_id'       => $this->input->post('category_id'),
+                            'id'                        => $id,
+                            'user_id'                   => $this->session->userdata('id'),
+                            'category_id'               => $this->input->post('category_id'),
                             'province_id'               => $this->input->post('province_id'),
-                            'iklan_title'            => $this->input->post('iklan_title'),
-                            'iklan_status'           => 'Active',
-                            'iklan_merek'            => $this->input->post('iklan_merek'),
-                            'iklan_type'            => $this->input->post('iklan_type'),
-                            'iklan_kondisi'            => $this->input->post('iklan_kondisi'),
-                            'iklan_price'            => $this->input->post('iklan_price'),
-                            'iklan_negotiable'            => $this->input->post('iklan_negotiable'),
-                            'iklan_desc'            => $this->input->post('iklan_desc'),
+                            'iklan_title'               => $this->input->post('iklan_title'),
+                            'iklan_status'              => $moderasi,
+                            'iklan_price'               => $this->input->post('iklan_price'),
+                            'iklan_negotiable'          => $this->input->post('iklan_negotiable'),
+                            'iklan_desc'                => $this->input->post('iklan_desc'),
                             // 'iklan_image'                 => $upload_data['uploads']['file_name'],
-                            'iklan_keywords'         => $this->input->post('iklan_keywords'),
-                            'date_updated'      => time()
+                            'iklan_keywords'            => $this->input->post('iklan_keywords'),
+                            'date_updated'              => time()
                         ];
                     $this->iklan_model->update($data);
                     $this->session->set_flashdata('message', 'Data telah di Update');
@@ -332,14 +303,14 @@ class Iklan extends CI_Controller
             }
             //End Masuk Database
             $data = [
-                'title'        => 'Update Iklan',
-                'deskripsi'     => 'deskripsi',
-                'keywords'      => 'keywords',
-                'category'     => $category,
-                'province'      => $province,
-                'iklan'       => $iklan,
-                'regularity'    => $regularity,
-                'content'          => 'myaccount/iklan/update_iklan'
+                'title'             => 'Update Iklan',
+                'deskripsi'         => 'deskripsi',
+                'keywords'          => 'keywords',
+                'category'          => $category,
+                'province'          => $province,
+                'iklan'             => $iklan,
+                'regularity'        => $regularity,
+                'content'           => 'myaccount/iklan/update_iklan'
             ];
             $this->load->view('myaccount/layout/wrapp', $data, FALSE);
         } else {
@@ -347,16 +318,14 @@ class Iklan extends CI_Controller
         }
     }
 
-
-
     // get Premium
     public function get_premium($id)
     {
         $user_id = $this->session->userdata('id');
         $user = $this->user_model->user_premium_detail($user_id);
         $iklan = $this->iklan_model->iklan_detail($id);
-        $package_range = 3;
-        // $iklan = $this->iklan_model->iklan_detail($id);
+        $settings = $this->settings_model->get_settings();
+        $package_range = $settings->premium_range;
 
         if ($iklan->user_id == $user_id) {
 
@@ -371,9 +340,9 @@ class Iklan extends CI_Controller
             if ($this->form_validation->run() === FALSE) {
                 $data = [
                     'title'             => 'Province',
-                    'deskripsi'     => 'deskripsi',
-                    'keywords'      => 'keywords',
-                    'iklan'         => $iklan,
+                    'deskripsi'         => 'deskripsi',
+                    'keywords'          => 'keywords',
+                    'iklan'             => $iklan,
                     'content'           => 'myaccount/iklan/premium_iklan'
                 ];
                 $this->load->view('myaccount/layout/wrapp', $data, FALSE);
@@ -384,8 +353,8 @@ class Iklan extends CI_Controller
                     redirect(base_url('myaccount/package'), 'refresh');
                 } else {
                     $data = [
-                        'id'                        => $this->input->post('iklan_id'),
-                        'iklan_featured'              => date('Y-m-d', strtotime("+$package_range days")),
+                        'id'                            => $this->input->post('iklan_id'),
+                        'iklan_featured'                => date('Y-m-d', strtotime("+$package_range days")),
                     ];
                     $this->iklan_model->update($data);
                     $this->user_model->update_premium_count($user_id);
@@ -394,9 +363,9 @@ class Iklan extends CI_Controller
                 }
                 $data = [
                     'title'             => 'Province',
-                    'deskripsi'     => 'deskripsi',
-                    'keywords'      => 'keywords',
-                    'iklan'         => $iklan,
+                    'deskripsi'         => 'deskripsi',
+                    'keywords'          => 'keywords',
+                    'iklan'             => $iklan,
                     'content'           => 'myaccount/iklan/premium_iklan'
                 ];
                 $this->load->view('myaccount/layout/wrapp', $data, FALSE);
