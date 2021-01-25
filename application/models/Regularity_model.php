@@ -17,6 +17,24 @@ class Regularity_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
+    public function get_regularity_seller()
+    {
+        $this->db->select('*');
+        $this->db->from('regularity');
+        $this->db->where('regularity_type', 'Seller');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
+    public function get_regularity_buyer()
+    {
+        $this->db->select('*');
+        $this->db->from('regularity');
+        $this->db->where('regularity_type', 'Buyer');
+        $this->db->order_by('id', 'DESC');
+        $query = $this->db->get();
+        return $query->result();
+    }
 
     public function detail_regularity($id)
     {
