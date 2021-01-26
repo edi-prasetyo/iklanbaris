@@ -1,4 +1,15 @@
-<div class="container my-5">
+<div class="container">
+    <section class="breadcrumbs mt-3">
+        <div class="d-sm-flex align-items-center justify-content-between">
+            <ol>
+                <li class="breadcrumb-item"><a href="<?php echo base_url('') ?>"><i class="ti-home"></i> Home</a></li>
+                <li class="breadcrumb-item active"><?php echo $title ?></li>
+            </ol>
+        </div>
+    </section>
+</div>
+
+<div class="container my-2">
 
     <div class="row">
 

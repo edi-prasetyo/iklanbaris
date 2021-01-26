@@ -10,7 +10,7 @@
 </div>
 
 
-<div class="container">
+<div class="container my-2">
   <div class="row">
     <?php foreach ($page as $page) : ?>
       <div class="col-md-4">

@@ -12,7 +12,7 @@
     </section>
 </div>
 
-<div class="container">
+<div class="container my-2">
 
     <?php if ($iklan->iklan_status == "Active") : ?>
 

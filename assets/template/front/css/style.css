@@ -369,7 +369,7 @@ ul.navbar-nav .nav-item:after {
 }
 
 .footer {
-  background-color: #ffffff !important;
+  background-color: transparent !important;
 
   color: #333 !important;
 }
@@ -1214,5 +1214,14 @@ section {
   -webkit-column-count: 3;
   -webkit-column-gap: 20px;
   column-count: 3;
+  column-gap: 20px;
+}
+
+.listcat ul {
+  -moz-column-count: 4;
+  -moz-column-gap: 20px;
+  -webkit-column-count: 4;
+  -webkit-column-gap: 20px;
+  column-count: 4;
   column-gap: 20px;
 }

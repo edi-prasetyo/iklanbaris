@@ -12,7 +12,7 @@
     </section>
 </div>
 
-<div class="container">
+<div class="container my-2">
     <div class="card">
         <div class="card-body">
             <h2><?php echo $title; ?></h2>

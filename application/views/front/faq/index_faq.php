@@ -9,7 +9,7 @@
     </section>
 </div>
 
-<div class="container">
+<div class="container my-2">
     <?php foreach ($faq as $faq) : ?>
         <div class="accordion" id="accordionExample">
             <div class="card my-2">

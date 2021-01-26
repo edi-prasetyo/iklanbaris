@@ -1,7 +1,8 @@
 <?php
 $meta      = $this->meta_model->get_meta();
-$page      = $this->page_model->get_page();
-$category   = $this->category_model->get_category_iklan();
+$footer_1      = $this->menu_model->get_footer_1();
+$footer_2      = $this->menu_model->get_footer_2();
+$footer_3      = $this->menu_model->get_footer_3();
 
 ?>
 
@@ -18,16 +19,16 @@ $category   = $this->category_model->get_category_iklan();
             <div class="col-md-3">
                 <h5><?php echo $meta->title; ?></h5>
                 <ul class="list-unstyled">
-                    <?php foreach ($page as $page) : ?>
-                        <li class="my-2"> <a class="text-muted" href="<?php echo base_url('page/detail/' . $page->page_slug); ?>"><?php echo $page->page_title; ?></a></li>
+                    <?php foreach ($footer_1 as $footer_1) : ?>
+                        <li class="my-2"> <a class="text-muted" href="<?php echo $footer_1->menu_url; ?>"><?php echo $footer_1->menu_name; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
             <div class="col-md-6 footer">
                 <h5 class="text-muted">Kategori</h5>
                 <ul class="list-unstyled">
-                    <?php foreach ($category as $category) : ?>
-                        <li> <a class="text-muted" href="#"><?php echo $category->category_name; ?></a></li>
+                    <?php foreach ($footer_2 as $footer_2) : ?>
+                        <li> <a class="text-muted" href="<?php echo $footer_2->menu_url; ?>"><?php echo $footer_2->menu_name; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>
@@ -45,9 +46,9 @@ $category   = $this->category_model->get_category_iklan();
             <!-- End Col -->
             <div class="col-md-6">
                 <ul class="list-inline">
-                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Kebijakan Privasi</a></li>
-                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Syarat dan Ketentuan</a></li>
-                    <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="#">Tips Aman Jual Beli</a></li>
+                    <?php foreach ($footer_3 as $footer_3) : ?>
+                        <li class="list-inline-item"><a class="social-icon text-xs-center" target="_blank" href="<?php echo $footer_3->menu_url; ?>"><?php echo $footer_3->menu_name; ?></a></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
             <!-- End col -->

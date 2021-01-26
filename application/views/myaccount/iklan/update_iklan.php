@@ -71,42 +71,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group row">
-                                <label class="col-3">Kondisi Barang</label>
-                                <div class="col-9">
-                                    <div class="form-check col-6">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="iklan_kondisi" value="Baru" <?php if ($iklan->iklan_kondisi == "Baru") {
-                                                                                                                                echo "checked";
-                                                                                                                            } ?>>Baru
-                                        </label>
-                                    </div>
-                                    <div class="form-check col-6">
-                                        <label class="form-check-label">
-                                            <input type="radio" class="form-check-input" name="iklan_kondisi" value="Bekas" <?php if ($iklan->iklan_kondisi == "Bekas") {
-                                                                                                                                echo "checked";
-                                                                                                                            } ?>>Bekas
-                                        </label>
-                                    </div>
-                                </div>
 
-                            </div>
 
-                            <div class="form-group row">
-                                <label class="col-3" for="exampleInputEmail1">Merek</label>
-                                <div class="col-9">
-                                    <input type="text" name="iklan_merek" class="form-control form-control-lg" placeholder="Merek Barang.." value="<?php echo $iklan->iklan_merek; ?>">
-                                    <?php echo form_error('iklan_merek', '<p class="text-danger">', '</p>'); ?>
-                                </div>
-                            </div>
 
-                            <div class="form-group row">
-                                <label class="col-3">Model</label>
-                                <div class="col-9">
-                                    <input type="text" name="iklan_type" class="form-control form-control-lg" placeholder="Model .." value="<?php echo $iklan->iklan_type; ?>">
-                                    <?php echo form_error('iklan_type', '<p class="text-danger">', '</p>'); ?>
-                                </div>
-                            </div>
 
                             <div class="form-group row">
                                 <label class="col-3">Harga</label>

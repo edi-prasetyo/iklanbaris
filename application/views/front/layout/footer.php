@@ -28,7 +28,7 @@ $footer_3      = $this->menu_model->get_footer_3();
                 <h5 class="text-muted">Kategori</h5>
                 <ul class="list-unstyled">
                     <?php foreach ($footer_2 as $footer_2) : ?>
-                        <li> <a class="text-muted" href="<?php echo $footer_1->menu_url; ?>"><?php echo $footer_2->menu_name; ?></a></li>
+                        <li> <a class="text-muted" href="<?php echo $footer_2->menu_url; ?>"><?php echo $footer_2->menu_name; ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             </div>

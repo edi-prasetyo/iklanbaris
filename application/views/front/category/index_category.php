@@ -12,27 +12,27 @@
     </section>
 </div>
 
-<div class="container">
+<div class="container my-2">
     <div class="row">
+        <div class="col-md-12 ">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <?php foreach ($category as $category) { ?>
 
-        <?php foreach ($category as $category) { ?>
-            <div class="col-md-3">
-                <a href="<?php echo base_url('iklan/category/' . $category->category_slug); ?>">
-                    <div class="card mt-3">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <img class="img-fluid" src="<?php echo base_url('assets/img/category/' . $category->category_image); ?>">
-                                </div>
-                                <div class="col-6">
-                                    <?php echo $category->category_name; ?>
-                                </div>
+                            <div class="col-4">
+                                <li>
+                                    <a href="<?php echo base_url('iklan/category/' . $category->category_slug); ?>">
+
+                                        <?php echo $category->category_name; ?></a>
+                                </li>
                             </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        <?php }; ?>
 
+                        <?php }; ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
 </div>

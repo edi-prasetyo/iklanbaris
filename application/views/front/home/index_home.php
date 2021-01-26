@@ -53,9 +53,6 @@
           </a>
         </div>
 
-
-
-
     </div>
   <?php endforeach; ?>
 
@@ -81,8 +78,8 @@
 
     <div class="col-xl-12">
       <div class="section-title text-center mb-60">
-        <p>Iklan Paling Banyak di lihat</p>
-        <h2>Iklan Terbaru</h2>
+        <p>Iklan Paling Baru</p>
+        <h2> Terbaru</h2>
       </div>
     </div>
 

@@ -109,7 +109,7 @@ echo validation_errors('<div class="alert alert-warning">', '</div>');
 
                                 <td>
 
-                                    <a href="<?php echo base_url('admin/category/update/' . $category->id); ?>" class="btn btn-sm btn-info"><i class="ti-pecil"></i> Edit</a>
+                                    <a href="<?php echo base_url('admin/category/update/' . $category->id); ?>" class="btn btn-sm btn-info text-white"><i class="ti-pecil"></i> Edit</a>
 
                                     <?php include "delete_category.php"; ?>
                                 </td>

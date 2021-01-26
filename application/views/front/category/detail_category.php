@@ -9,7 +9,7 @@
 
     </div>
 </div><!-- End Breadcrumbs -->
-<div class="container">
+<div class="container my-2">
     <div class="row">
 
         <?php if (!empty($iklan)) : ?>
