@@ -42,7 +42,7 @@ class Category_model extends CI_Model
         $this->db->from('category');
         $this->db->where('category_type', 'Iklan');
         $this->db->limit(5);
-        $this->db->order_by('id', 'DESC');
+        $this->db->order_by('id', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }

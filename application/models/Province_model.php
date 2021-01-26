@@ -13,7 +13,7 @@ class Province_model extends CI_Model
     {
         $this->db->select('*');
         $this->db->from('province');
-        $this->db->order_by('id', 'DESC');
+        $this->db->order_by('category_name', 'ASC');
         $query = $this->db->get();
         return $query->result();
     }
