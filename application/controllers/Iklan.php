@@ -191,7 +191,7 @@ class Iklan extends CI_Controller
 
     $config['base_url']       = base_url('iklan/category/' . $category_list->category_slug . '/index/');
     $config['total_rows']     = count($this->iklan_model->total_category($category_id));
-    $config['per_page']       = 3;
+    $config['per_page']       = 10;
     $config['uri_segment']    = 5;
 
 
@@ -256,7 +256,7 @@ class Iklan extends CI_Controller
 
     $config['base_url']       = base_url('iklan/user/' . $user_list->username . '/index/');
     $config['total_rows']     = count($this->iklan_model->total_user($user_id));
-    $config['per_page']       = 1;
+    $config['per_page']       = 10;
     $config['uri_segment']    = 5;
 
 
@@ -352,7 +352,7 @@ class Iklan extends CI_Controller
     }
 
     // Row per page
-    $rowperpage = 2;
+    $rowperpage = 10;
     // Row position
     if ($rowno != 0) {
       $rowno = ($rowno - 1) * $rowperpage;
