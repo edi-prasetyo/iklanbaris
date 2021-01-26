@@ -80,6 +80,7 @@
                   <label class="form-check-label">
                     <input type="radio" class="form-check-input" name="iklan_negotiable" value="Fix">Fix
                   </label>
+                  <?php echo form_error('iklan_negotiable', '<p class="text-danger">', '</p>'); ?>
                 </div>
               </div>
             </div>

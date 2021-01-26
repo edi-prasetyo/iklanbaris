@@ -56,7 +56,7 @@
                                         <?php echo $iklan->iklan_views; ?> kali
                                     </div>
                                     <div class="col-6">
-                                        <strong>Lokasi : </strong><?php echo $iklan->province_name; ?>
+                                        <strong>Kategori : </strong><?php echo $iklan->category_name; ?>
                                     </div>
                                     <div class="col-6">
                                         <strong>Lokasi : </strong><?php echo $iklan->province_name; ?>

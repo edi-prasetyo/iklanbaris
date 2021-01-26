@@ -86,34 +86,35 @@
     <div class="row">
 
       <?php foreach ($iklan as $iklan) : ?>
-        <div class="col-md-6">
-          <a href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>">
+        <a href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>">
+          <div class="col-md-3">
+
             <div class="card my-2">
-              <div class="row">
-                <div class="col-md-3">
-                  <div class="img-index-frame">
-                    <img src="<?php echo base_url('assets/img/iklan/' . $iklan->iklan_image); ?>" class="img-fluid">
-                  </div>
-                </div>
-                <div class="col-md-9 ">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                      <h4 class="text-success">IDR <?php echo number_format($iklan->iklan_price, 0, ",", "."); ?></h4>
-                      <span class="badge badge-success badge-pill"><?php echo $iklan->category_name; ?></span>
-                    </div>
-                    <h5 class="text-muted"> <?php echo $iklan->iklan_title; ?></h5>
-                    <small><span class="text-muted">ID Iklan : </span> <?php echo $iklan->id_iklan; ?> <span class="text-muted ml-5">Dilihat : </span> <?php echo $iklan->iklan_views; ?> <span class="text-muted ml-5"> Lokasi : <?php echo $iklan->province_name; ?> </small><br>
 
-                  </div>
+              <div class="img-index-frame">
+                <img src="<?php echo base_url('assets/img/iklan/' . $iklan->iklan_image); ?>" class="img-fluid">
+              </div>
+              <div class="card-body">
+                <a href="<?php echo base_url('iklan/category/' . $iklan->category_slug); ?>" class="badge badge-success badge-pill text-white"><?php echo $iklan->category_name; ?></a>
+                <a href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>">
+                  <h5 class="card-title"><?php echo substr($iklan->iklan_title, 0, 22); ?>..</h5>
+                </a>
+                <h4 class="text-success">IDR <?php echo number_format($iklan->iklan_price, 0, ",", "."); ?></h4>
+                <span class="d-flex justify-content-between align-items-center">
+                  <div class="text-muted"><i class="ri-map-pin-2-line"></i> <?php echo $iklan->province_name; ?></div>
 
-                </div>
+                  <div class="text-muted"><i class="ri-eye-line"></i> <?php echo $iklan->iklan_views; ?></div>
+                </span>
 
               </div>
 
             </div>
-          </a>
-        </div>
+
+          </div>
+        </a>
       <?php endforeach; ?>
+
+
 
 
 

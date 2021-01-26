@@ -11,10 +11,10 @@ $footer_3      = $this->menu_model->get_footer_3();
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="<?php echo base_url(); ?>"><img class="mb-2" src="<?php echo base_url('assets/img/logo/' . $meta->logo) ?>" alt="" width="250"></a>
-                <span style="font-size:18px;"><br>
+                <a href="<?php echo base_url(); ?>"><img class="mb-2 img-fluid" src="<?php echo base_url('assets/img/logo/' . $meta->logo) ?>" alt="" width="250"></a>
+                <small>
                     <i class="ri-mail-send-line"></i> <?php echo $meta->email ?>
-                </span>
+                </small>
             </div>
             <div class="col-md-3">
                 <h5><?php echo $meta->title; ?></h5>

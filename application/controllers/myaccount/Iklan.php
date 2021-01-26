@@ -113,6 +113,12 @@ class Iklan extends CI_Controller
             'required',
             ['required'      => 'Deskripsi Iklan harus di isi',]
         );
+        $this->form_validation->set_rules(
+            'iklan_negotiable',
+            'Merek Barang',
+            'required',
+            ['required'      => 'Pilih Status Harga Nego',]
+        );
         if ($this->form_validation->run()) {
 
             $config['upload_path']          = './assets/img/iklan/';

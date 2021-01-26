@@ -275,7 +275,7 @@ class iklan_model extends CI_Model
     }
     public function get_iklan_home()
     {
-        $this->db->select('iklan.*, user.user_image, category.category_name, province_name');
+        $this->db->select('iklan.*, user.user_image, category.category_name, category.category_slug, province_name');
         $this->db->from('iklan');
         // join
         $this->db->join('user', 'user.id = iklan.user_id', 'LEFT');

@@ -120,7 +120,9 @@
 
                 <ul class="list-group list-group-flush">
                     <?php foreach ($category as $category) : ?>
-                        <li class="list-group-item"><a href="<?php echo base_url('iklan/category/' . $category->category_slug); ?>"> <img width="10%" src="<?php echo base_url('assets/img/category/' . $category->category_image); ?>"> <?php echo $category->category_name; ?></a></li>
+                        <a href="<?php echo base_url('iklan/category/' . $category->category_slug); ?>">
+                            <li class="list-group-item"><img width="10%" src="<?php echo base_url('assets/img/category/' . $category->category_image); ?>"> <?php echo $category->category_name; ?></li>
+                        </a>
                     <?php endforeach; ?>
                 </ul>
 
