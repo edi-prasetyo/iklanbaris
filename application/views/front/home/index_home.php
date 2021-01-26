@@ -97,7 +97,7 @@
               <div class="card-body">
                 <a href="<?php echo base_url('iklan/category/' . $iklan->category_slug); ?>" class="badge badge-success badge-pill text-white"><?php echo $iklan->category_name; ?></a>
                 <a href="<?php echo base_url('iklan/detail/' . $iklan->iklan_slug); ?>">
-                  <h5 class="card-title"><?php echo substr($iklan->iklan_title, 0, 22); ?>..</h5>
+                  <h5 class="card-title"><?php echo substr($iklan->iklan_title, 0, 24); ?>..</h5>
                 </a>
                 <h4 class="text-success">IDR <?php echo number_format($iklan->iklan_price, 0, ",", "."); ?></h4>
                 <span class="d-flex justify-content-between align-items-center">
