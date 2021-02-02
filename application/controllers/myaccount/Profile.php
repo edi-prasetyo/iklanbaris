@@ -28,9 +28,9 @@ class Profile extends CI_Controller
             'deskripsi'             => 'Deskripsi',
             'keywords'              => 'Keywords',
             'user'                  => $user,
-            'iklan_saya'        => $iklan_saya,
-            'iklan_active'      => $iklan_active,
-            'iklan_pending'     => $iklan_pending,
+            'iklan_saya'            => $iklan_saya,
+            'iklan_active'          => $iklan_active,
+            'iklan_pending'         => $iklan_pending,
             'content'               => 'myaccount/profile/index_profile'
         ];
         $this->load->view('myaccount/layout/wrapp', $data, FALSE);
@@ -107,8 +107,6 @@ class Profile extends CI_Controller
                     }
                     //End Hapus Gambar
 
-
-
                     $nomor_hp = $this->input->post('user_phone');
 
                     // kadang ada penulisan no hp 0811 239 345
@@ -132,7 +130,7 @@ class Profile extends CI_Controller
                         }
                     }
 
-
+                    $hp = '62' . substr(trim($nomor_hp), 1);
                     $data  = [
                         'id'                    => $id,
                         'user_name'             => $this->input->post('user_name'),
@@ -178,7 +176,7 @@ class Profile extends CI_Controller
                         $hp = '62' . substr(trim($nomor_hp), 1);
                     }
                 }
-
+                $hp = '62' . substr(trim($nomor_hp), 1);
 
                 if ($user->user_image != "")
                     $data  = [

@@ -94,9 +94,9 @@ $meta           = $this->meta_model->get_meta();
   </div>
 </nav>
 
-<div class="container my-3">
+<div class="container my-2">
 
-  <section class="breadcrumbs">
+  <div class="breadcrumbs">
     <div class="d-sm-flex align-items-center justify-content-between">
       <h5 class="mb-0 text-gray-800"><?php echo $title; ?></h5>
       <ol>
@@ -107,4 +107,4 @@ $meta           = $this->meta_model->get_meta();
         <li class="breadcrumb-item active"><?php echo $title ?></li>
       </ol>
     </div>
-  </section>
+  </div>
