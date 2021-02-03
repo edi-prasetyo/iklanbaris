@@ -177,10 +177,11 @@ class iklan_model extends CI_Model
         $query = $this->db->get();
         return $query->result();
     }
-    public function total_row_user()
+    public function total_row_user($id)
     {
         $this->db->select('*');
         $this->db->from('iklan');
+        $this->db->where('user_id', $id);
         $this->db->order_by('id', 'DESC');
         $query = $this->db->get();
         return $query->result();
@@ -283,7 +284,7 @@ class iklan_model extends CI_Model
         $this->db->join('province', 'province.id = iklan.province_id', 'LEFT');
         // End Join
         $this->db->where('iklan_status', 'Active');
-        $this->db->order_by('iklan_views', 'DESC');
+        $this->db->order_by('rand()');
         $this->db->limit(4);
         $query = $this->db->get();
         return $query->result();
@@ -393,6 +394,7 @@ class iklan_model extends CI_Model
         //End Join
         $this->db->where('iklan_status', 'Active');
         $this->db->limit($rowno, $rowperpage);
+        $this->db->order_by('iklan.id', 'DESC');
         $query = $this->db->get();
 
         return $query->result_array();
@@ -405,6 +407,7 @@ class iklan_model extends CI_Model
         $this->db->select('count(*) as allcount');
         $this->db->from('iklan');
         $this->db->where('iklan_status', 'Active');
+        $this->db->order_by('iklan.id', 'DESC');
         $query = $this->db->get();
         $result = $query->result_array();
 
@@ -424,6 +427,7 @@ class iklan_model extends CI_Model
         $this->db->join('province', 'province.id = iklan.province_id', 'LEFT');
         //End Join
         $this->db->where('iklan_status', 'Active');
+        $this->db->order_by('iklan.id', 'DESC');
 
         if ($search != '') {
             $this->db->like('iklan_title', $search);
@@ -443,12 +447,14 @@ class iklan_model extends CI_Model
         $this->db->select('count(*) as allcount');
         $this->db->from('iklan');
 
+
         if ($search != '') {
             $this->db->like('iklan_title', $search);
             $this->db->or_like('province_id', $search);
         }
 
         $query = $this->db->get();
+        $this->db->order_by('iklan.id', 'DESC');
         $result = $query->result_array();
 
         return $result[0]['allcount'];
