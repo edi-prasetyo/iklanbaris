@@ -141,7 +141,7 @@
 
     button.onclick = function() {
         content.innerHTML = '<i class="ri-phone-line"></i> <?php
-                                                            $hp = substr_replace($iklan->user_phone, '0', 0, 3);
+                                                            $hp = substr_replace($iklan->user_phone, '0', 0, 2);
                                                             echo $hp; ?>';
     };
 </script>
