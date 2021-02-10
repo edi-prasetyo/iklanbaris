@@ -14,7 +14,11 @@
 				<div class="card-body">
 					<div class="profile-picture">
 						<div class="img-avatar">
-							<img src="<?php echo base_url('assets/img/avatars/' . $user->user_image); ?>" alt="..." class="img-fluid">
+							<?php if ($user->user_image == NULL) : ?>
+								<img src="<?php echo base_url('assets/img/avatars/default.jpg'); ?>" width="70%" class="img-fluid">
+							<?php else : ?>
+								<img src="<?php echo base_url('assets/img/avatars/' . $user->user_image); ?>" width="70%" class="img-fluid">
+							<?php endif; ?>
 						</div>
 					</div>
 				</div>

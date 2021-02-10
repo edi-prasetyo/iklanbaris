@@ -30,7 +30,11 @@
                                 <div class="row">
                                     <div class="col-md-3">
                                         <div class="img-avatar">
-                                            <img class="img-fluid" src="<?php echo base_url('assets/img/avatars/' . $user_list->user_image); ?>">
+                                            <?php if ($user_list->user_image == NULL) : ?>
+                                                <img src="<?php echo base_url('assets/img/avatars/default.jpg'); ?>" width="70%" class="img-fluid">
+                                            <?php else : ?>
+                                                <img src="<?php echo base_url('assets/img/avatars/' . $user_list->user_image); ?>" width="70%" class="img-fluid">
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                     <div class="col-md-9">

@@ -130,7 +130,8 @@ class Profile extends CI_Controller
                         }
                     }
 
-                    $hp = '62' . substr(trim($nomor_hp), 1);
+
+
                     $data  = [
                         'id'                    => $id,
                         'user_name'             => $this->input->post('user_name'),
@@ -176,7 +177,7 @@ class Profile extends CI_Controller
                         $hp = '62' . substr(trim($nomor_hp), 1);
                     }
                 }
-                $hp = '62' . substr(trim($nomor_hp), 1);
+
 
                 if ($user->user_image != "")
                     $data  = [

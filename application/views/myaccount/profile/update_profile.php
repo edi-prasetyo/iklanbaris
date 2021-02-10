@@ -15,7 +15,11 @@
                     <div class="row">
 
                         <div class="col-3 mb-3">
-                            <img src="<?php echo base_url('assets/img/avatars/' . $user->user_image); ?>" width="70%" class="img-fluid">
+                            <?php if ($user->user_image == NULL) : ?>
+                                <img src="<?php echo base_url('assets/img/avatars/default.jpg'); ?>" width="70%" class="img-fluid">
+                            <?php else : ?>
+                                <img src="<?php echo base_url('assets/img/avatars/' . $user->user_image); ?>" width="70%" class="img-fluid">
+                            <?php endif; ?>
                         </div>
                         <div class="col-9">
                             <div class="input-group">
@@ -74,9 +78,16 @@
                         <div class="col-3">
                             Handphone
                         </div>
+
+
+
+
                         <div class="col-4">
                             <div class="form-group">
-                                <input type="text" class="form-control" name="user_phone" placeholder="No. Handphone" value="<?php echo $user->user_phone; ?>">
+                                <?php $hp = $user->user_phone;
+                                $hp0 = substr_replace($hp, '0', 0, 2);
+                                ?>
+                                <input type="text" class="form-control" name="user_phone" placeholder="No. Handphone" value="<?php echo $hp0; ?>">
 
                             </div>
 
